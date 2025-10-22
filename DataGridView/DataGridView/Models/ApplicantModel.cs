@@ -9,7 +9,7 @@ namespace DataGridView.Models
     /// <summary>
     /// Модель абитуриента
     /// </summary>
-    internal class ApplicantModel
+    public class ApplicantModel
     {
         /// <summary>
         /// ФИО
@@ -49,6 +49,14 @@ namespace DataGridView.Models
         /// <summary>
         /// Кол-во баллов за все предметы
         /// </summary>
-        public int TotalAmount { get; set; }
+        public int TotalAmount
+        {
+            get { return MathExamScore + RussianLanguageExamScore + InformaticExamScore; }
+        }
+
+        public ApplicantModel Clone()
+        {
+            return (ApplicantModel)MemberwiseClone();
+        }
     }
 }

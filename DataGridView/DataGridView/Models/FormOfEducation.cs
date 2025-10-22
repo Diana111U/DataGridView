@@ -6,11 +6,29 @@ using System.Threading.Tasks;
 
 namespace DataGridView.Models
 {
+    /// <summary>
+    /// Форма обучения
+    /// </summary>
     public enum FormOfEducation
     {
-        Unknow,
+        /// <summary>
+        /// Неизвестно
+        /// </summary>
+        Unknown,
+
+        /// <summary>
+        /// Очное
+        /// </summary>
         FullTime,
+
+        /// <summary>
+        /// Очно-заочное
+        /// </summary>
         PartTime,
+
+        /// <summary>
+        /// Заочное
+        /// </summary>
         Correspondence
     }
 }
