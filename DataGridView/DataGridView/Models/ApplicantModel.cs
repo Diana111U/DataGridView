@@ -11,6 +11,12 @@ namespace DataGridView.Models
     /// </summary>
     public class ApplicantModel
     {
+
+        /// <summary>
+        /// Id абитуриента
+        /// </summary>
+        public Guid Id { get; set; } = Guid.NewGuid();
+
         /// <summary>
         /// ФИО
         /// </summary>

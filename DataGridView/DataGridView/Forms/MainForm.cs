@@ -90,5 +90,24 @@ namespace DataGridView
                 OnUpdate();
             }
         }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            var applicant = (ApplicantModel)dataGridView1.SelectedRows[0].DataBoundItem;
+            var target = items.FirstOrDefault(x=>x.Id == applicant.Id);
+            if (target != null && 
+                MessageBox.Show($"Вы действительно желаете удалить абитуриента '{target.FullName}'?",
+                "Удаление абитуриента",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question)==DialogResult.Yes)
+            {
+                items.Remove(target);
+                OnUpdate();
+            }
+        }
     }
 }

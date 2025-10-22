@@ -141,7 +141,7 @@
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(135, 22);
             AddButton.Text = "Добавить абитуриента";
-            AddButton.Click += this.AddButton_Click;
+            AddButton.Click += AddButton_Click;
             // 
             // ChangeButton
             // 
@@ -160,6 +160,7 @@
             DeleteButton.Name = "DeleteButton";
             DeleteButton.Size = new Size(127, 22);
             DeleteButton.Text = "Удалить абитуриента";
+            DeleteButton.Click += this.DeleteButton_Click;
             // 
             // statusStrip1
             // 
