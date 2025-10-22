@@ -25,37 +25,37 @@ namespace DataGridView.Models
         /// <summary>
         /// Пол
         /// </summary>
-        public Gender Gender { get; set; }
+        public Gender Gender { get; set; } = Gender.Unknown;
 
         /// <summary>
         /// День рождения
         /// </summary>
-        public DateOnly BirthDay { get; set; }
+        public DateOnly BirthDay { get; set; } = DateOnly.MinValue;
 
         /// <summary>
         /// Форма обучения
         /// </summary>
-        public FormOfEducation FormOfEducation { get; set; }
+        public FormOfEducation FormOfEducation { get; set; } = FormOfEducation.Unknown;
 
         /// <summary>
         /// Кол-во баллов ЕГЭ по математике
         /// </summary>
-        public int MathExamScore { get; set; }
+        public int MathExamScore { get; set; } = 0;
 
         /// <summary>
         /// Кол-во баллов ЕГЭ по русскому
         /// </summary>
-        public int RussianLanguageExamScore { get; set; }
+        public int RussianLanguageExamScore { get; set; } = 0;
 
         /// <summary>
         /// Кол-во баллов ЕГЭ по информатике
         /// </summary>
-        public int InformaticExamScore { get; set; }
+        public int InformaticExamScore { get; set; } = 0;
 
         /// <summary>
         /// Кол-во баллов за все предметы
         /// </summary>
-        public int TotalAmount
+        public int TotalAmount 
         {
             get { return MathExamScore + RussianLanguageExamScore + InformaticExamScore; }
         }

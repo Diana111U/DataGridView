@@ -109,5 +109,30 @@ namespace DataGridView
                 OnUpdate();
             }
         }
+
+        private void ChangeButton_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            var applicant = (ApplicantModel)dataGridView1.SelectedRows[0].DataBoundItem;
+            var editForm = new ApplicantForm(applicant);
+            if(editForm.ShowDialog() == DialogResult.OK)
+            {
+                var target = items.FirstOrDefault(x=>x.Id==editForm.CurrentApplicant.Id);
+                if(target != null)
+                {
+                    target.FullName = editForm.CurrentApplicant.FullName;
+                    target.Gender = editForm.CurrentApplicant.Gender;
+                    target.BirthDay=editForm.CurrentApplicant.BirthDay;
+                    target.FormOfEducation = editForm.CurrentApplicant.FormOfEducation;
+                    target.MathExamScore = editForm.CurrentApplicant.MathExamScore;
+                    target.RussianLanguageExamScore= editForm.CurrentApplicant.RussianLanguageExamScore;
+                    target.InformaticExamScore = editForm.CurrentApplicant.InformaticExamScore;
+                    OnUpdate();
+                }
+            }
+        }
     }
 }

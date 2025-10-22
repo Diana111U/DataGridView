@@ -151,6 +151,7 @@
             ChangeButton.Name = "ChangeButton";
             ChangeButton.Size = new Size(137, 22);
             ChangeButton.Text = "Изменить абитуриента";
+            ChangeButton.Click += this.ChangeButton_Click;
             // 
             // DeleteButton
             // 
@@ -160,7 +161,7 @@
             DeleteButton.Name = "DeleteButton";
             DeleteButton.Size = new Size(127, 22);
             DeleteButton.Text = "Удалить абитуриента";
-            DeleteButton.Click += this.DeleteButton_Click;
+            DeleteButton.Click += DeleteButton_Click;
             // 
             // statusStrip1
             // 
