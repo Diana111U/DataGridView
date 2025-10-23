@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DataGridView.Classes;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,36 +22,45 @@ namespace DataGridView.Models
         /// <summary>
         /// ФИО
         /// </summary>
+        [Display(Name = "ФИО абитуриента")]
+        [Required(ErrorMessage = "{0} обязательно для заполнения")]
+        [StringLength(Constants.FullNameMaxLength, ErrorMessage = "{0} должно быть меньше {1} символов")]
         public string FullName { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Пол
-        /// </summary>
+        /// <inheritdoc cref = "Models.Gender"/>
         public Gender Gender { get; set; } = Gender.Unknown;
 
         /// <summary>
         /// День рождения
         /// </summary>
-        public DateOnly BirthDay { get; set; } = DateOnly.MinValue;
+        [Required(ErrorMessage = "Дата рождения обязательна")]
+        public DateOnly BirthDay { get; set; } = DateOnly.FromDateTime(DateTime.Today);
 
-        /// <summary>
-        /// Форма обучения
-        /// </summary>
+        /// <inheritdoc cref = "Models.FormOfEducation"/>
         public FormOfEducation FormOfEducation { get; set; } = FormOfEducation.Unknown;
 
         /// <summary>
         /// Кол-во баллов ЕГЭ по математике
         /// </summary>
+        [Display(Name = "Баллы ЕГЭ по математике")]
+        [Required(ErrorMessage = "{0} обязательно для заполнения")]
+        [Range(Constants.MinScore, Constants.MaxScore, ErrorMessage = "{0} должно быть между {1} и {2}")]
         public int MathExamScore { get; set; } = 0;
 
         /// <summary>
-        /// Кол-во баллов ЕГЭ по русскому
+        /// Кол-во баллов ЕГЭ по русскому языку
         /// </summary>
+        [Display(Name = "Баллы ЕГЭ по русскому языку")]
+        [Required(ErrorMessage = "{0} обязательно для заполнения")]
+        [Range(Constants.MinScore, Constants.MaxScore, ErrorMessage = "{0} должно быть между {1} и {2}")]
         public int RussianLanguageExamScore { get; set; } = 0;
 
         /// <summary>
         /// Кол-во баллов ЕГЭ по информатике
         /// </summary>
+        [Display(Name = "Баллы ЕГЭ по информатике")]
+        [Required(ErrorMessage = "{0} обязательно для заполнения")]
+        [Range(Constants.MinScore, Constants.MaxScore, ErrorMessage = "{0} должно быть между {1} и {2}")]
         public int InformaticExamScore { get; set; } = 0;
 
         /// <summary>

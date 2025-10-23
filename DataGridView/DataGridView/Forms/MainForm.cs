@@ -41,10 +41,17 @@ namespace DataGridView
             dataGridView1.DataSource = bindingSource;
         }
 
+        /// <summary>
+        /// Метод обработки форматирования каждой ячейки
+        /// </summary>
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             var col = dataGridView1.Columns[e.ColumnIndex];
             var applicant = (ApplicantModel)dataGridView1.Rows[e.RowIndex].DataBoundItem;
+            if(applicant==null)
+            {
+                return;
+            }
 
             if (col.DataPropertyName == nameof(ApplicantModel.Gender))
             {
@@ -68,12 +75,18 @@ namespace DataGridView
             }
         }
 
+        /// <summary>
+        /// Метод обновления данных
+        /// </summary>
         public void OnUpdate()
         {
             bindingSource.ResetBindings(false);
             SetStatistic();
         }
 
+        /// <summary>
+        /// Метод вывдода данных в StripStatus
+        /// </summary>
         public void SetStatistic()
         {
             toolStripStatusLabel1.Text = $"Кол-во абитур-ов: {items.Count}";
@@ -81,6 +94,9 @@ namespace DataGridView
             toolStripStatusLabel3.Text = $"Проходят: {items.Where(x=>x.TotalAmount>ScoreNeedToAdmission).Count()}";
         }
 
+        /// <summary>
+        /// Метод обработки клика по кнопке добавить
+        /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         {
             var addForm = new ApplicantForm();
@@ -91,6 +107,9 @@ namespace DataGridView
             }
         }
 
+        /// <summary>
+        /// Метод обработки клика по кнопке удалить
+        /// </summary>
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -110,6 +129,9 @@ namespace DataGridView
             }
         }
 
+        /// <summary>
+        /// Метод обработки клика по кнопке изменить
+        /// </summary>
         private void ChangeButton_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)

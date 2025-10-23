@@ -1,7 +1,9 @@
-﻿using DataGridView.Models;
+﻿using DataGridView.Infrastructure;
+using DataGridView.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -30,8 +32,87 @@ namespace DataGridView.Forms
 
             comboBoxFormOfEducation.DataSource = Enum.GetValues(typeof(FormOfEducation));
             comboBoxGender.DataSource = Enum.GetValues(typeof(Gender));
+
+            var dateTimePickerBinding = new Binding("Value", targetApplicant, "BirthDay");
+            dateTimePickerBinding.Format += new ConvertEventHandler(DateOnlyToDateTime!);
+            dateTimePickerBinding.Parse += new ConvertEventHandler(DateTimeToDateOnly!);
+            dateTimePickerBirthDay.DataBindings.Add(dateTimePickerBinding);
+
+            textBoxFullName.AddBinding(x => x.Text, targetApplicant, x => x.FullName, errorProvider1);
+            comboBoxGender.AddBinding(x => x.SelectedItem, targetApplicant, x => x.Gender, errorProvider1);
+            comboBoxFormOfEducation.AddBinding(x => x.SelectedItem, targetApplicant, x => x.FormOfEducation, errorProvider1);
+            MathExamScorenumericUpDown.AddBinding(x => x.Value, targetApplicant, x => x.MathExamScore, errorProvider1);
+            RussianLanguageExamScorenumericUpDown.AddBinding(x => x.Value, targetApplicant, x => x.RussianLanguageExamScore, errorProvider1);
+            InformaticExamScorenumericUpDown.AddBinding(x => x.Value, targetApplicant, x => x.InformaticExamScore, errorProvider1);
         }
 
         public ApplicantModel CurrentApplicant => targetApplicant;
+
+        /// <summary>
+        /// Метод преобразования типов DateOnly к DateTime
+        /// </summary>
+        private void DateOnlyToDateTime(object sender, ConvertEventArgs e)
+        {
+            if (e.DesiredType == typeof(DateTime) && e.Value is DateOnly)
+            {
+                var dateOnly = (DateOnly)e.Value;
+                e.Value = new DateTime(dateOnly.Year, dateOnly.Month, dateOnly.Day);
+            }
+        }
+
+        /// <summary>
+        /// Метод преобразования типов DateTime к DateOnly
+        /// </summary>
+        private void DateTimeToDateOnly(object sender, ConvertEventArgs e)
+        {
+            if (e.DesiredType == typeof(DateOnly) && e.Value is DateTime)
+            {
+                e.Value = DateOnly.FromDateTime((DateTime)e.Value);
+            }
+        }
+
+        /// <summary>
+        /// Метод обработки события клика по кнопке добавить
+        /// </summary>
+        private void buttonAddApplicant_Click(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+
+            var context = new ValidationContext(targetApplicant);
+            var results = new List<ValidationResult>();
+
+            var isValid = Validator.TryValidateObject(targetApplicant, context, results, true);
+
+            if (isValid)
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else
+            {
+                foreach (var validationResult in results)
+                {
+                    foreach (var memberName in validationResult.MemberNames)
+                    {
+                        Control? control = memberName switch
+                        {
+                            nameof(ApplicantModel.FullName) => textBoxFullName,
+                            nameof(ApplicantModel.BirthDay) => dateTimePickerBirthDay,
+                            nameof(ApplicantModel.Gender) => comboBoxGender,
+                            nameof(ApplicantModel.FormOfEducation) => comboBoxFormOfEducation,
+                            nameof(ApplicantModel.MathExamScore) => MathExamScorenumericUpDown,
+                            nameof(ApplicantModel.RussianLanguageExamScore) => RussianLanguageExamScorenumericUpDown,
+                            nameof(ApplicantModel.InformaticExamScore) => InformaticExamScorenumericUpDown,
+                            _=> null
+                        };
+
+                        if (control != null)
+                        {
+                            errorProvider1.SetError(control, validationResult.ErrorMessage);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

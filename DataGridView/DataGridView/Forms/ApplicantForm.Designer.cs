@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             label8 = new Label();
             textBoxFullName = new TextBox();
@@ -38,15 +39,20 @@
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
-            textBoxRussianLanguageExamScore = new TextBox();
-            textBoxInformaticExamScore = new TextBox();
-            textBoxMathExamScore = new TextBox();
             comboBoxGender = new ComboBox();
             comboBoxFormOfEducation = new ComboBox();
             dateTimePickerBirthDay = new DateTimePicker();
             buttonAddApplicant = new Button();
             buttonCancel = new Button();
+            errorProvider1 = new ErrorProvider(components);
+            MathExamScorenumericUpDown = new NumericUpDown();
+            RussianLanguageExamScorenumericUpDown = new NumericUpDown();
+            InformaticExamScorenumericUpDown = new NumericUpDown();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)MathExamScorenumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)RussianLanguageExamScorenumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)InformaticExamScorenumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -70,15 +76,15 @@
             // 
             // textBoxFullName
             // 
-            textBoxFullName.Location = new Point(302, 135);
+            textBoxFullName.Location = new Point(302, 155);
             textBoxFullName.Name = "textBoxFullName";
-            textBoxFullName.Size = new Size(100, 23);
+            textBoxFullName.Size = new Size(236, 23);
             textBoxFullName.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(217, 143);
+            label1.Location = new Point(238, 158);
             label1.Name = "label1";
             label1.Size = new Size(34, 15);
             label1.TabIndex = 2;
@@ -87,7 +93,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(217, 190);
+            label2.Location = new Point(238, 197);
             label2.Name = "label2";
             label2.Size = new Size(30, 15);
             label2.TabIndex = 3;
@@ -96,7 +102,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(182, 233);
+            label3.Location = new Point(182, 241);
             label3.Name = "label3";
             label3.Size = new Size(92, 15);
             label3.TabIndex = 4;
@@ -105,7 +111,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(173, 272);
+            label4.Location = new Point(173, 285);
             label4.Name = "label4";
             label4.Size = new Size(101, 15);
             label4.TabIndex = 5;
@@ -114,7 +120,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(100, 316);
+            label5.Location = new Point(78, 317);
             label5.Name = "label5";
             label5.Size = new Size(196, 15);
             label5.TabIndex = 6;
@@ -123,7 +129,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(100, 364);
+            label6.Location = new Point(90, 355);
             label6.Name = "label6";
             label6.Size = new Size(184, 15);
             label6.TabIndex = 7;
@@ -132,38 +138,17 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(77, 399);
+            label7.Location = new Point(67, 386);
             label7.Name = "label7";
             label7.Size = new Size(207, 15);
             label7.TabIndex = 8;
             label7.Text = "Кол-во баллов ЕГЭ по информатике";
             // 
-            // textBoxRussianLanguageExamScore
-            // 
-            textBoxRussianLanguageExamScore.Location = new Point(302, 356);
-            textBoxRussianLanguageExamScore.Name = "textBoxRussianLanguageExamScore";
-            textBoxRussianLanguageExamScore.Size = new Size(100, 23);
-            textBoxRussianLanguageExamScore.TabIndex = 9;
-            // 
-            // textBoxInformaticExamScore
-            // 
-            textBoxInformaticExamScore.Location = new Point(302, 396);
-            textBoxInformaticExamScore.Name = "textBoxInformaticExamScore";
-            textBoxInformaticExamScore.Size = new Size(100, 23);
-            textBoxInformaticExamScore.TabIndex = 10;
-            // 
-            // textBoxMathExamScore
-            // 
-            textBoxMathExamScore.Location = new Point(302, 308);
-            textBoxMathExamScore.Name = "textBoxMathExamScore";
-            textBoxMathExamScore.Size = new Size(100, 23);
-            textBoxMathExamScore.TabIndex = 12;
-            // 
             // comboBoxGender
             // 
             comboBoxGender.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxGender.FormattingEnabled = true;
-            comboBoxGender.Location = new Point(302, 182);
+            comboBoxGender.Location = new Point(302, 194);
             comboBoxGender.Name = "comboBoxGender";
             comboBoxGender.Size = new Size(121, 23);
             comboBoxGender.TabIndex = 13;
@@ -172,14 +157,16 @@
             // 
             comboBoxFormOfEducation.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxFormOfEducation.FormattingEnabled = true;
-            comboBoxFormOfEducation.Location = new Point(302, 269);
+            comboBoxFormOfEducation.Location = new Point(303, 277);
             comboBoxFormOfEducation.Name = "comboBoxFormOfEducation";
-            comboBoxFormOfEducation.Size = new Size(121, 23);
+            comboBoxFormOfEducation.Size = new Size(159, 23);
             comboBoxFormOfEducation.TabIndex = 14;
             // 
             // dateTimePickerBirthDay
             // 
-            dateTimePickerBirthDay.Location = new Point(302, 227);
+            dateTimePickerBirthDay.Location = new Point(302, 235);
+            dateTimePickerBirthDay.MaxDate = new DateTime(2100, 1, 1, 0, 0, 0, 0);
+            dateTimePickerBirthDay.MinDate = new DateTime(2003, 1, 1, 0, 0, 0, 0);
             dateTimePickerBirthDay.Name = "dateTimePickerBirthDay";
             dateTimePickerBirthDay.Size = new Size(200, 23);
             dateTimePickerBirthDay.TabIndex = 15;
@@ -187,21 +174,47 @@
             // 
             // buttonAddApplicant
             // 
-            buttonAddApplicant.Location = new Point(221, 453);
+            buttonAddApplicant.Location = new Point(212, 454);
             buttonAddApplicant.Name = "buttonAddApplicant";
-            buttonAddApplicant.Size = new Size(75, 23);
+            buttonAddApplicant.Size = new Size(75, 30);
             buttonAddApplicant.TabIndex = 16;
             buttonAddApplicant.Text = "Добавить";
             buttonAddApplicant.UseVisualStyleBackColor = true;
+            buttonAddApplicant.Click += buttonAddApplicant_Click;
             // 
             // buttonCancel
             // 
-            buttonCancel.Location = new Point(357, 453);
+            buttonCancel.Location = new Point(348, 454);
             buttonCancel.Name = "buttonCancel";
-            buttonCancel.Size = new Size(75, 23);
+            buttonCancel.Size = new Size(75, 30);
             buttonCancel.TabIndex = 17;
             buttonCancel.Text = "Отменить";
             buttonCancel.UseVisualStyleBackColor = true;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
+            // MathExamScorenumericUpDown
+            // 
+            MathExamScorenumericUpDown.Location = new Point(303, 317);
+            MathExamScorenumericUpDown.Name = "MathExamScorenumericUpDown";
+            MathExamScorenumericUpDown.Size = new Size(120, 23);
+            MathExamScorenumericUpDown.TabIndex = 18;
+            // 
+            // RussianLanguageExamScorenumericUpDown
+            // 
+            RussianLanguageExamScorenumericUpDown.Location = new Point(303, 349);
+            RussianLanguageExamScorenumericUpDown.Name = "RussianLanguageExamScorenumericUpDown";
+            RussianLanguageExamScorenumericUpDown.Size = new Size(120, 23);
+            RussianLanguageExamScorenumericUpDown.TabIndex = 19;
+            // 
+            // InformaticExamScorenumericUpDown
+            // 
+            InformaticExamScorenumericUpDown.Location = new Point(303, 384);
+            InformaticExamScorenumericUpDown.Name = "InformaticExamScorenumericUpDown";
+            InformaticExamScorenumericUpDown.Size = new Size(120, 23);
+            InformaticExamScorenumericUpDown.TabIndex = 20;
             // 
             // ApplicantForm
             // 
@@ -210,14 +223,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = buttonCancel;
             ClientSize = new Size(640, 516);
+            Controls.Add(InformaticExamScorenumericUpDown);
+            Controls.Add(RussianLanguageExamScorenumericUpDown);
+            Controls.Add(MathExamScorenumericUpDown);
             Controls.Add(buttonCancel);
             Controls.Add(buttonAddApplicant);
             Controls.Add(dateTimePickerBirthDay);
             Controls.Add(comboBoxFormOfEducation);
             Controls.Add(comboBoxGender);
-            Controls.Add(textBoxMathExamScore);
-            Controls.Add(textBoxInformaticExamScore);
-            Controls.Add(textBoxRussianLanguageExamScore);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -231,6 +244,10 @@
             Text = "ApplicantForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)MathExamScorenumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)RussianLanguageExamScorenumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)InformaticExamScorenumericUpDown).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -246,14 +263,15 @@
         private Label label5;
         private Label label6;
         private Label label7;
-        private TextBox textBoxRussianLanguageExamScore;
-        private TextBox textBoxInformaticExamScore;
-        private TextBox textBoxMathExamScore;
         private ComboBox comboBoxGender;
         private ComboBox comboBoxFormOfEducation;
         private DateTimePicker dateTimePickerBirthDay;
         private Label label8;
         private Button buttonAddApplicant;
         private Button buttonCancel;
+        private ErrorProvider errorProvider1;
+        private NumericUpDown InformaticExamScorenumericUpDown;
+        private NumericUpDown RussianLanguageExamScorenumericUpDown;
+        private NumericUpDown MathExamScorenumericUpDown;
     }
 }
