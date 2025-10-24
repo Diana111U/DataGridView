@@ -13,10 +13,10 @@ using System.Windows.Forms;
 
 namespace DataGridView.Forms
 {
-
     public partial class ApplicantForm : Form
     {
         private readonly ApplicantModel targetApplicant;
+
         public ApplicantForm(ApplicantModel? sourceApplicant = null)
         {
             InitializeComponent();
@@ -43,6 +43,7 @@ namespace DataGridView.Forms
             MathExamScorenumericUpDown.AddBinding(x => x.Value, targetApplicant, x => x.MathExamScore, errorProvider1);
             RussianLanguageExamScorenumericUpDown.AddBinding(x => x.Value, targetApplicant, x => x.RussianLanguageExamScore, errorProvider1);
             InformaticExamScorenumericUpDown.AddBinding(x => x.Value, targetApplicant, x => x.InformaticExamScore, errorProvider1);
+            dateTimePickerBirthDay.AddBinding(x => x.Value, targetApplicant, x => x.BirthDay, errorProvider1);
         }
 
         public ApplicantModel CurrentApplicant => targetApplicant;

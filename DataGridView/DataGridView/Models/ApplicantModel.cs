@@ -45,7 +45,7 @@ namespace DataGridView.Models
         [Display(Name = "Баллы ЕГЭ по математике")]
         [Required(ErrorMessage = "{0} обязательно для заполнения")]
         [Range(Constants.MinScore, Constants.MaxScore, ErrorMessage = "{0} должно быть между {1} и {2}")]
-        public int MathExamScore { get; set; } = 0;
+        public int MathExamScore { get; set; }
 
         /// <summary>
         /// Кол-во баллов ЕГЭ по русскому языку
@@ -61,7 +61,7 @@ namespace DataGridView.Models
         [Display(Name = "Баллы ЕГЭ по информатике")]
         [Required(ErrorMessage = "{0} обязательно для заполнения")]
         [Range(Constants.MinScore, Constants.MaxScore, ErrorMessage = "{0} должно быть между {1} и {2}")]
-        public int InformaticExamScore { get; set; } = 0;
+        public int InformaticExamScore { get; set; }
 
         /// <summary>
         /// Кол-во баллов за все предметы
