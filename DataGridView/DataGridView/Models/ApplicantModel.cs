@@ -28,16 +28,16 @@ namespace DataGridView.Models
         public string FullName { get; set; } = string.Empty;
 
         /// <inheritdoc cref = "Models.Gender"/>
-        public Gender Gender { get; set; } = Gender.Unknown;
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// День рождения
         /// </summary>
         [Required(ErrorMessage = "Дата рождения обязательна")]
-        public DateOnly BirthDay { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+        public DateTime BirthDay { get; set; } = DateTime.Now;
 
         /// <inheritdoc cref = "Models.FormOfEducation"/>
-        public FormOfEducation FormOfEducation { get; set; } = FormOfEducation.Unknown;
+        public FormOfEducation FormOfEducation { get; set; }
 
         /// <summary>
         /// Кол-во баллов ЕГЭ по математике
@@ -53,7 +53,7 @@ namespace DataGridView.Models
         [Display(Name = "Баллы ЕГЭ по русскому языку")]
         [Required(ErrorMessage = "{0} обязательно для заполнения")]
         [Range(Constants.MinScore, Constants.MaxScore, ErrorMessage = "{0} должно быть между {1} и {2}")]
-        public int RussianLanguageExamScore { get; set; } = 0;
+        public int RussianLanguageExamScore { get; set; }
 
         /// <summary>
         /// Кол-во баллов ЕГЭ по информатике
@@ -66,10 +66,7 @@ namespace DataGridView.Models
         /// <summary>
         /// Кол-во баллов за все предметы
         /// </summary>
-        public int TotalAmount 
-        {
-            get { return MathExamScore + RussianLanguageExamScore + InformaticExamScore; }
-        }
+        public int TotalAmount => MathExamScore + RussianLanguageExamScore + InformaticExamScore;
 
         public ApplicantModel Clone()
         {

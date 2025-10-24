@@ -13,6 +13,7 @@ using System.Windows.Forms;
 
 namespace DataGridView.Forms
 {
+
     public partial class ApplicantForm : Form
     {
         private readonly ApplicantModel targetApplicant;
@@ -34,8 +35,6 @@ namespace DataGridView.Forms
             comboBoxGender.DataSource = Enum.GetValues(typeof(Gender));
 
             var dateTimePickerBinding = new Binding("Value", targetApplicant, "BirthDay");
-            dateTimePickerBinding.Format += new ConvertEventHandler(DateOnlyToDateTime!);
-            dateTimePickerBinding.Parse += new ConvertEventHandler(DateTimeToDateOnly!);
             dateTimePickerBirthDay.DataBindings.Add(dateTimePickerBinding);
 
             textBoxFullName.AddBinding(x => x.Text, targetApplicant, x => x.FullName, errorProvider1);
@@ -47,29 +46,6 @@ namespace DataGridView.Forms
         }
 
         public ApplicantModel CurrentApplicant => targetApplicant;
-
-        /// <summary>
-        /// Метод преобразования типов DateOnly к DateTime
-        /// </summary>
-        private void DateOnlyToDateTime(object sender, ConvertEventArgs e)
-        {
-            if (e.DesiredType == typeof(DateTime) && e.Value is DateOnly)
-            {
-                var dateOnly = (DateOnly)e.Value;
-                e.Value = new DateTime(dateOnly.Year, dateOnly.Month, dateOnly.Day);
-            }
-        }
-
-        /// <summary>
-        /// Метод преобразования типов DateTime к DateOnly
-        /// </summary>
-        private void DateTimeToDateOnly(object sender, ConvertEventArgs e)
-        {
-            if (e.DesiredType == typeof(DateOnly) && e.Value is DateTime)
-            {
-                e.Value = DateOnly.FromDateTime((DateTime)e.Value);
-            }
-        }
 
         /// <summary>
         /// Метод обработки события клика по кнопке добавить

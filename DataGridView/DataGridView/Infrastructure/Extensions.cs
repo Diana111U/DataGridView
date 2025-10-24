@@ -50,10 +50,6 @@ namespace DataGridView.Infrastructure
                         {
                             errorProvider.SetError(control, results.First().ErrorMessage);
                         }
-                        else
-                        {
-                            errorProvider.SetError(control, string.Empty);
-                        }
                     };
                 }
             }

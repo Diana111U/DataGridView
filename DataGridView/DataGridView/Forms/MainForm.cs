@@ -9,6 +9,7 @@ namespace DataGridView
         private readonly List<ApplicantModel> items;
         private const int ScoreNeedToAdmission = 250;
         private readonly BindingSource bindingSource = [];
+
         public MainForm()
         {
             items =
@@ -17,7 +18,7 @@ namespace DataGridView
                 {
                     FullName = "Иванов Иван Иванович",
                     Gender = Models.Gender.Male,
-                    BirthDay = DateOnly.Parse("10.10.2005"),
+                    BirthDay = DateTime.Parse("10.10.2005"),
                     FormOfEducation = Models.FormOfEducation.FullTime,
                     MathExamScore = 62,
                     RussianLanguageExamScore = 87,
@@ -27,7 +28,7 @@ namespace DataGridView
                 {
                     FullName = "Петрова Анна Михайловна",
                     Gender = Models.Gender.Female,
-                    BirthDay = DateOnly.Parse("10.10.2004"),
+                    BirthDay = DateTime.Parse("10.10.2004"),
                     FormOfEducation = Models.FormOfEducation.PartTime,
                     MathExamScore = 90,
                     RussianLanguageExamScore = 93,
