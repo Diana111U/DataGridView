@@ -23,7 +23,18 @@ namespace DataGridView.Forms
 
             if (sourceApplicant != null)
             {
-                targetApplicant = sourceApplicant.Clone();
+                targetApplicant = new ApplicantModel
+                {
+                    Id = sourceApplicant.Id,
+                    FullName = sourceApplicant.FullName,
+                    Gender = sourceApplicant.Gender,
+                    BirthDay = sourceApplicant.BirthDay,
+                    FormOfEducation = sourceApplicant.FormOfEducation,
+                    MathExamScore = sourceApplicant.MathExamScore,
+                    RussianLanguageExamScore = sourceApplicant.RussianLanguageExamScore,
+                    InformaticExamScore = sourceApplicant.InformaticExamScore,
+                };
+
                 buttonAddApplicant.Text = "Сохранить";
             }
             else
@@ -34,16 +45,13 @@ namespace DataGridView.Forms
             comboBoxFormOfEducation.DataSource = Enum.GetValues(typeof(FormOfEducation));
             comboBoxGender.DataSource = Enum.GetValues(typeof(Gender));
 
-            var dateTimePickerBinding = new Binding("Value", targetApplicant, "BirthDay");
-            dateTimePickerBirthDay.DataBindings.Add(dateTimePickerBinding);
-
             textBoxFullName.AddBinding(x => x.Text, targetApplicant, x => x.FullName, errorProvider1);
-            comboBoxGender.AddBinding(x => x.SelectedItem, targetApplicant, x => x.Gender, errorProvider1);
-            comboBoxFormOfEducation.AddBinding(x => x.SelectedItem, targetApplicant, x => x.FormOfEducation, errorProvider1);
+            comboBoxGender.AddBinding(x => x.SelectedItem, targetApplicant, x => x.Gender);
+            comboBoxFormOfEducation.AddBinding(x => x.SelectedItem, targetApplicant, x => x.FormOfEducation);
             MathExamScorenumericUpDown.AddBinding(x => x.Value, targetApplicant, x => x.MathExamScore, errorProvider1);
             RussianLanguageExamScorenumericUpDown.AddBinding(x => x.Value, targetApplicant, x => x.RussianLanguageExamScore, errorProvider1);
             InformaticExamScorenumericUpDown.AddBinding(x => x.Value, targetApplicant, x => x.InformaticExamScore, errorProvider1);
-            dateTimePickerBirthDay.AddBinding(x => x.Value, targetApplicant, x => x.BirthDay, errorProvider1);
+            dateTimePickerBirthDay.AddBinding(x => x.Value, targetApplicant, x => x.BirthDay);
         }
 
         public ApplicantModel CurrentApplicant => targetApplicant;

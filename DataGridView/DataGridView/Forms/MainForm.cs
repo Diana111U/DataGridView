@@ -74,6 +74,11 @@ namespace DataGridView
                     _ => string.Empty,
                 };
             }
+
+            if(col.Name == "TotalAmount")
+            {
+                e.Value = applicant.MathExamScore + applicant.RussianLanguageExamScore + applicant.InformaticExamScore;
+            }
         }
 
         /// <summary>
@@ -90,9 +95,12 @@ namespace DataGridView
         /// </summary>
         public void SetStatistic()
         {
+            var countScoreMoreThan150 = items.Count(x => (x.MathExamScore + x.RussianLanguageExamScore + x.InformaticExamScore) > 150);
+            var countPassing = items.Count(x => (x.MathExamScore + x.RussianLanguageExamScore + x.InformaticExamScore) > ScoreNeedToAdmission);
+
             toolStripStatusLabel1.Text = $"Кол-во абитур-ов: {items.Count}";
-            toolStripStatusLabel2.Text = $"Кол-во абитур-ов с баллами > 150: {items.Where(x=>x.TotalAmount>150).Count()}";
-            toolStripStatusLabel3.Text = $"Проходят: {items.Where(x=>x.TotalAmount>ScoreNeedToAdmission).Count()}";
+            toolStripStatusLabel2.Text = $"Кол-во абитур-ов с баллами > 150: {countScoreMoreThan150}";
+            toolStripStatusLabel3.Text = $"Проходят: {countPassing}";
         }
 
         /// <summary>

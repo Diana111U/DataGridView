@@ -30,14 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             dataGridView1 = new System.Windows.Forms.DataGridView();
-            FullName = new DataGridViewTextBoxColumn();
-            Gender = new DataGridViewTextBoxColumn();
-            BirthDay = new DataGridViewTextBoxColumn();
-            FormOfEducation = new DataGridViewTextBoxColumn();
-            MathExamScore = new DataGridViewTextBoxColumn();
-            RussianLanguageExamScore = new DataGridViewTextBoxColumn();
-            InformaticExamScore = new DataGridViewTextBoxColumn();
-            TotalAmount = new DataGridViewTextBoxColumn();
             toolStrip1 = new ToolStrip();
             AddButton = new ToolStripButton();
             ChangeButton = new ToolStripButton();
@@ -46,6 +38,14 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             toolStripStatusLabel3 = new ToolStripStatusLabel();
+            FullName = new DataGridViewTextBoxColumn();
+            Gender = new DataGridViewTextBoxColumn();
+            BirthDay = new DataGridViewTextBoxColumn();
+            FormOfEducation = new DataGridViewTextBoxColumn();
+            MathExamScore = new DataGridViewTextBoxColumn();
+            RussianLanguageExamScore = new DataGridViewTextBoxColumn();
+            InformaticExamScore = new DataGridViewTextBoxColumn();
+            TotalAmount = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             toolStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -67,6 +67,72 @@
             dataGridView1.Size = new Size(1020, 403);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
+            // 
+            // toolStrip1
+            // 
+            toolStrip1.Items.AddRange(new ToolStripItem[] { AddButton, ChangeButton, DeleteButton });
+            toolStrip1.Location = new Point(0, 0);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Size = new Size(1020, 25);
+            toolStrip1.TabIndex = 1;
+            toolStrip1.Text = "toolStrip1";
+            // 
+            // AddButton
+            // 
+            AddButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            AddButton.Image = (Image)resources.GetObject("AddButton.Image");
+            AddButton.ImageTransparentColor = Color.Magenta;
+            AddButton.Name = "AddButton";
+            AddButton.Size = new Size(135, 22);
+            AddButton.Text = "Добавить абитуриента";
+            AddButton.Click += AddButton_Click;
+            // 
+            // ChangeButton
+            // 
+            ChangeButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            ChangeButton.Image = (Image)resources.GetObject("ChangeButton.Image");
+            ChangeButton.ImageTransparentColor = Color.Magenta;
+            ChangeButton.Name = "ChangeButton";
+            ChangeButton.Size = new Size(137, 22);
+            ChangeButton.Text = "Изменить абитуриента";
+            ChangeButton.Click += ChangeButton_Click;
+            // 
+            // DeleteButton
+            // 
+            DeleteButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            DeleteButton.Image = (Image)resources.GetObject("DeleteButton.Image");
+            DeleteButton.ImageTransparentColor = Color.Magenta;
+            DeleteButton.Name = "DeleteButton";
+            DeleteButton.Size = new Size(127, 22);
+            DeleteButton.Text = "Удалить абитуриента";
+            DeleteButton.Click += DeleteButton_Click;
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2, toolStripStatusLabel3 });
+            statusStrip1.Location = new Point(0, 428);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(1020, 22);
+            statusStrip1.TabIndex = 2;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(108, 17);
+            toolStripStatusLabel1.Text = "Кол-во абитур-ов:";
+            // 
+            // toolStripStatusLabel2
+            // 
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new Size(201, 17);
+            toolStripStatusLabel2.Text = "Кол-во абитур-ов с баллами > 150:";
+            // 
+            // toolStripStatusLabel3
+            // 
+            toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            toolStripStatusLabel3.Size = new Size(63, 17);
+            toolStripStatusLabel3.Text = "Проходят:";
             // 
             // FullName
             // 
@@ -119,76 +185,9 @@
             // 
             // TotalAmount
             // 
-            TotalAmount.DataPropertyName = "TotalAmount";
             TotalAmount.HeaderText = "Общая сумма баллов";
             TotalAmount.Name = "TotalAmount";
             TotalAmount.ReadOnly = true;
-            // 
-            // toolStrip1
-            // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { AddButton, ChangeButton, DeleteButton });
-            toolStrip1.Location = new Point(0, 0);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1020, 25);
-            toolStrip1.TabIndex = 1;
-            toolStrip1.Text = "toolStrip1";
-            // 
-            // AddButton
-            // 
-            AddButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            AddButton.Image = (Image)resources.GetObject("AddButton.Image");
-            AddButton.ImageTransparentColor = Color.Magenta;
-            AddButton.Name = "AddButton";
-            AddButton.Size = new Size(135, 22);
-            AddButton.Text = "Добавить абитуриента";
-            AddButton.Click += AddButton_Click;
-            // 
-            // ChangeButton
-            // 
-            ChangeButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            ChangeButton.Image = (Image)resources.GetObject("ChangeButton.Image");
-            ChangeButton.ImageTransparentColor = Color.Magenta;
-            ChangeButton.Name = "ChangeButton";
-            ChangeButton.Size = new Size(137, 22);
-            ChangeButton.Text = "Изменить абитуриента";
-            ChangeButton.Click += this.ChangeButton_Click;
-            // 
-            // DeleteButton
-            // 
-            DeleteButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            DeleteButton.Image = (Image)resources.GetObject("DeleteButton.Image");
-            DeleteButton.ImageTransparentColor = Color.Magenta;
-            DeleteButton.Name = "DeleteButton";
-            DeleteButton.Size = new Size(127, 22);
-            DeleteButton.Text = "Удалить абитуриента";
-            DeleteButton.Click += DeleteButton_Click;
-            // 
-            // statusStrip1
-            // 
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2, toolStripStatusLabel3 });
-            statusStrip1.Location = new Point(0, 428);
-            statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1020, 22);
-            statusStrip1.TabIndex = 2;
-            statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(108, 17);
-            toolStripStatusLabel1.Text = "Кол-во абитур-ов:";
-            // 
-            // toolStripStatusLabel2
-            // 
-            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            toolStripStatusLabel2.Size = new Size(201, 17);
-            toolStripStatusLabel2.Text = "Кол-во абитур-ов с баллами > 150:";
-            // 
-            // toolStripStatusLabel3
-            // 
-            toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            toolStripStatusLabel3.Size = new Size(63, 17);
-            toolStripStatusLabel3.Text = "Проходят:";
             // 
             // MainForm
             // 

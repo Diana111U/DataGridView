@@ -62,15 +62,5 @@ namespace DataGridView.Models
         [Required(ErrorMessage = "{0} обязательно для заполнения")]
         [Range(Constants.MinScore, Constants.MaxScore, ErrorMessage = "{0} должно быть между {1} и {2}")]
         public int InformaticExamScore { get; set; }
-
-        /// <summary>
-        /// Кол-во баллов за все предметы
-        /// </summary>
-        public int TotalAmount => MathExamScore + RussianLanguageExamScore + InformaticExamScore;
-
-        public ApplicantModel Clone()
-        {
-            return (ApplicantModel)MemberwiseClone();
-        }
     }
 }

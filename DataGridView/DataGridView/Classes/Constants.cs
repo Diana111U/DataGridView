@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataGridView.Classes
 {
-    public static class Constants
+    public class Constants
     {
         /// <summary>
         /// Максимальная длина Фио абитуриента
