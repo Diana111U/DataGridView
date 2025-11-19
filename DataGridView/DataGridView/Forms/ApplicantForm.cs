@@ -1,15 +1,20 @@
 ﻿using DataGridView.Entities.Models;
 using DataGridView.Infrastructure;
-using DataGridView.Models;
 using System.ComponentModel.DataAnnotations;
 
 
 namespace DataGridView.App.Forms
 {
+    /// <summary>
+    /// Форма добавления или редактирование абитуриента
+    /// </summary>
     public partial class ApplicantForm : Form
     {
         private readonly ApplicantModel targetApplicant;
 
+        /// <summary>
+        /// Инициализирует экземпляр <see cref="<ApplicantForm>"/>
+        /// </summary>
         public ApplicantForm(ApplicantModel? sourceApplicant = null)
         {
             InitializeComponent();
@@ -47,6 +52,9 @@ namespace DataGridView.App.Forms
             dateTimePickerBirthDay.AddBinding(x => x.Value, targetApplicant, x => x.BirthDay);
         }
 
+        /// <summary>
+        /// Текущий абитуриент формы
+        /// </summary>
         public ApplicantModel CurrentApplicant => targetApplicant;
 
         /// <summary>

@@ -1,8 +1,7 @@
 ﻿using DataGridView.AppConstants;
-using DataGridView.Entities.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace DataGridView.Models
+namespace DataGridView.Entities.Models
 {
     /// <summary>
     /// Модель абитуриента
@@ -23,7 +22,7 @@ namespace DataGridView.Models
         [StringLength(Constants.FullNameMaxLength, ErrorMessage = "{0} должно быть меньше {1} символов")]
         public string FullName { get; set; } = string.Empty;
 
-        /// <inheritdoc cref = "Entities.Models.Gender"/>
+        /// <inheritdoc cref = "Models.Gender"/>
         public Gender Gender { get; set; }
 
         /// <summary>
@@ -32,7 +31,7 @@ namespace DataGridView.Models
         [Required(ErrorMessage = "Дата рождения обязательна")]
         public DateTime BirthDay { get; set; } = DateTime.Now;
 
-        /// <inheritdoc cref = "Entities.Models.FormOfEducation"/>
+        /// <inheritdoc cref = "Models.FormOfEducation"/>
         public FormOfEducation FormOfEducation { get; set; }
 
         /// <summary>
