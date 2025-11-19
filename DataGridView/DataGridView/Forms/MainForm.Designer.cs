@@ -66,7 +66,7 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1020, 403);
             dataGridView1.TabIndex = 0;
-            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
+            dataGridView1.CellFormatting += DataGridView1_CellFormatting;
             // 
             // FullName
             // 

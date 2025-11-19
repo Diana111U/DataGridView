@@ -65,5 +65,25 @@ namespace DataGridView.Services
                 await Task.CompletedTask;
             }
         }
+
+        async Task IApplicantService.DeleteApplicant(Guid Id)
+        {
+            var target = items.FirstOrDefault(x => x.Id == Id);
+            if (target != null)
+            {
+                items.Remove(target);
+                await Task.CompletedTask;
+            }
+        }
+
+        async Task<int> IApplicantService.GetTotalAmount(Guid Id)
+        {
+            var target = items.FirstOrDefault(y => y.Id == Id);
+            if (target != null)
+            {
+                var totalAmount = target.MathExamScore + target.RussianLanguageExamScore + target.InformaticExamScore;
+                return await Task.FromResult(totalAmount);
+            }
+        }
     }
 }

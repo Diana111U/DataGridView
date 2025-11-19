@@ -19,16 +19,13 @@ namespace DataGridView.App.Forms
         {
             InitializeComponent();
             this.applicantService = applicantService;
-            SetStatistic();
             dataGridView1.AutoGenerateColumns = false;
         }
-
-
 
         /// <summary>
         /// Метод обработки форматирования каждой ячейки
         /// </summary>
-        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             var col = dataGridView1.Columns[e.ColumnIndex];
             var applicant = (ApplicantModel)dataGridView1.Rows[e.RowIndex].DataBoundItem;
@@ -67,10 +64,12 @@ namespace DataGridView.App.Forms
         /// <summary>
         /// Метод обновления данных
         /// </summary>
-        public void OnUpdate()
+        public async void OnUpdate()
         {
+            var items = await applicantService.GetAllApplicants();
+            bindingSource.DataSource = items.ToList();
             bindingSource.ResetBindings(false);
-            SetStatistic();
+            await SetStatistic();
         }
 
         /// <summary>
@@ -95,29 +94,28 @@ namespace DataGridView.App.Forms
             if (addForm.ShowDialog() == DialogResult.OK)
             {
                 items.Add(addForm.CurrentApplicant);
-                OnUpdate();
+                await OnUpdate();
             }
         }
 
         /// <summary>
         /// Метод обработки клика по кнопке удалить
         /// </summary>
-        private void DeleteButton_Click(object sender, EventArgs e)
+        private async void DeleteButton_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 return;
             }
             var applicant = (ApplicantModel)dataGridView1.SelectedRows[0].DataBoundItem;
-            var target = items.FirstOrDefault(x => x.Id == applicant.Id);
-            if (target != null &&
-                MessageBox.Show($"Вы действительно желаете удалить абитуриента '{target.FullName}'?",
+            if (
+                MessageBox.Show($"Вы действительно желаете удалить абитуриента '{applicant.FullName}'?",
                 "Удаление абитуриента",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                items.Remove(target);
-                OnUpdate();
+                await applicantService.DeleteApplicant(applicant.Id);
+                await OnUpdate();
             }
         }
 

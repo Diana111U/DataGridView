@@ -21,5 +21,15 @@ namespace DataGridView.Services.Contracts
         /// Изменение абитуриента
         /// </summary>
         public Task ChangeApplicant(ApplicantModel applicant);
+
+        /// <summary>
+        /// Удаление абитуриента
+        /// </summary>
+        public Task DeleteApplicant(Guid Id);
+
+        /// <summary>
+        /// Получаем сумму баллов за все экзамены
+        /// </summary>
+        public Task GetTotalAmount(Guid Id);
     }
 }
