@@ -30,6 +30,11 @@ namespace DataGridView.Services.Contracts
         /// <summary>
         /// Получаем сумму баллов за все экзамены
         /// </summary>
-        public Task GetTotalAmount(Guid Id);
+        public Task<int> GetTotalAmount(Guid Id);
+
+        /// <summary>
+        /// Статистика абитуриента
+        /// </summary>
+        public Task<ApplicantStatistics> GetStatistics();
     }
 }

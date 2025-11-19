@@ -9,7 +9,6 @@ namespace DataGridView.App.Forms
     public partial class MainForm : Form
     {
         private readonly IApplicantService applicantService;
-        private const int ScoreNeedToAdmission = 250;
         private readonly BindingSource bindingSource = [];
 
         /// <summary>
@@ -25,7 +24,7 @@ namespace DataGridView.App.Forms
         /// <summary>
         /// Метод обработки форматирования каждой ячейки
         /// </summary>
-        private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private async void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             var col = dataGridView1.Columns[e.ColumnIndex];
             var applicant = (ApplicantModel)dataGridView1.Rows[e.RowIndex].DataBoundItem;
@@ -57,14 +56,15 @@ namespace DataGridView.App.Forms
 
             if (col.Name == "TotalAmount")
             {
-                e.Value = applicant.MathExamScore + applicant.RussianLanguageExamScore + applicant.InformaticExamScore;
+                var totalAmount = await applicantService.GetTotalAmount(applicant.Id);
+                e.Value = totalAmount;
             }
         }
 
         /// <summary>
         /// Метод обновления данных
         /// </summary>
-        public async void OnUpdate()
+        public async Task OnUpdate()
         {
             var items = await applicantService.GetAllApplicants();
             bindingSource.DataSource = items.ToList();
@@ -75,25 +75,24 @@ namespace DataGridView.App.Forms
         /// <summary>
         /// Метод вывдода данных в StripStatus
         /// </summary>
-        public async void SetStatistic()
+        public async Task SetStatistic()
         {
-            var countScoreMoreThan150 = items.Count(x => (x.MathExamScore + x.RussianLanguageExamScore + x.InformaticExamScore) > 150);
-            var countPassing = items.Count(x => (x.MathExamScore + x.RussianLanguageExamScore + x.InformaticExamScore) > ScoreNeedToAdmission);
+            var statistics = await applicantService.GetStatistics();
 
-            toolStripStatusLabel1.Text = $"Кол-во абитур-ов: {items.Count}";
-            toolStripStatusLabel2.Text = $"Кол-во абитур-ов с баллами > 150: {countScoreMoreThan150}";
-            toolStripStatusLabel3.Text = $"Проходят: {countPassing}";
+            toolStripStatusLabel1.Text = $"Кол-во абитур-ов: {statistics.ApplicantCount}";
+            toolStripStatusLabel2.Text = $"Кол-во абитур-ов с баллами > 150: {statistics.CountScoreMoreThan150}";
+            toolStripStatusLabel3.Text = $"Проходят: {statistics.CountPassing}";
         }
 
         /// <summary>
         /// Метод обработки клика по кнопке добавить
         /// </summary>
-        private void AddButton_Click(object sender, EventArgs e)
+        private async void AddButton_Click(object sender, EventArgs e)
         {
             var addForm = new ApplicantForm();
             if (addForm.ShowDialog() == DialogResult.OK)
             {
-                items.Add(addForm.CurrentApplicant);
+                await applicantService.AddApplicant(addForm.CurrentApplicant);
                 await OnUpdate();
             }
         }
@@ -132,7 +131,8 @@ namespace DataGridView.App.Forms
             var editForm = new ApplicantForm(applicant);
             if (editForm.ShowDialog() == DialogResult.OK)
             {
-                await ChangeApplicant();
+                await applicantService.ChangeApplicant(editForm.CurrentApplicant);
+                await OnUpdate();
             }
         }
 
@@ -144,7 +144,7 @@ namespace DataGridView.App.Forms
         private async Task LoadData()
         {
             var items = await applicantService.GetAllApplicants();
-            bindingSource.DataSource = items;
+            bindingSource.DataSource = items.ToList();
             dataGridView1.DataSource = bindingSource;
             await SetStatistic();
         }

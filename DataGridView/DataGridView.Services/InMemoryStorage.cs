@@ -1,4 +1,5 @@
-﻿using DataGridView.Entities.Models;
+﻿using DataGridView.AppConstants;
+using DataGridView.Entities.Models;
 using DataGridView.Services.Contracts;
 
 namespace DataGridView.Services
@@ -84,6 +85,19 @@ namespace DataGridView.Services
                 var totalAmount = target.MathExamScore + target.RussianLanguageExamScore + target.InformaticExamScore;
                 return await Task.FromResult(totalAmount);
             }
+            return 0;
+        }
+
+        async Task<ApplicantStatistics> IApplicantService.GetStatistics()
+        {
+            var items = await GetAllApplicants();
+            var statistics = new ApplicantStatistics
+            {
+                ApplicantCount = items.Count(),
+                CountScoreMoreThan150 = items.Count(x => (x.MathExamScore + x.RussianLanguageExamScore + x.InformaticExamScore) > 150),
+                CountPassing = items.Count(x => (x.MathExamScore + x.RussianLanguageExamScore + x.InformaticExamScore) > Constants.ScoreNeedToAdmission)
+            };
+            return statistics;
         }
     }
 }

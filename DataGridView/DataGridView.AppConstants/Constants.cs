@@ -16,5 +16,10 @@
         /// Минимальное кол-во баллов за ЕГЭ
         /// </summary>
         public const int MinScore = 0;
+
+        /// <summary>
+        /// Кол-во баллов нужное для зачисления
+        /// </summary>
+        public const int ScoreNeedToAdmission = 250;
     }
 }
