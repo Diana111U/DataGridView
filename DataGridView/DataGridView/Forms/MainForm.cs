@@ -1,8 +1,6 @@
-﻿using DataGridView.Forms;
-using DataGridView.Models;
-using System.Windows.Forms;
+﻿using DataGridView.Models;
 
-namespace DataGridView
+namespace DataGridView.App.Forms
 {
     public partial class MainForm : Form
     {

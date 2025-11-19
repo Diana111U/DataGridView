@@ -1,17 +1,9 @@
 ﻿using DataGridView.Infrastructure;
 using DataGridView.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace DataGridView.Forms
+
+namespace DataGridView.App.Forms
 {
     public partial class ApplicantForm : Form
     {
@@ -46,8 +38,8 @@ namespace DataGridView.Forms
             comboBoxGender.DataSource = Enum.GetValues(typeof(Gender));
 
             textBoxFullName.AddBinding(x => x.Text, targetApplicant, x => x.FullName, errorProvider1);
-            comboBoxGender.AddBinding(x => x.SelectedItem, targetApplicant, x => x.Gender);
-            comboBoxFormOfEducation.AddBinding(x => x.SelectedItem, targetApplicant, x => x.FormOfEducation);
+            comboBoxGender.AddBinding(x => x.SelectedItem!, targetApplicant, x => x.Gender);
+            comboBoxFormOfEducation.AddBinding(x => x.SelectedItem!, targetApplicant, x => x.FormOfEducation);
             MathExamScorenumericUpDown.AddBinding(x => x.Value, targetApplicant, x => x.MathExamScore, errorProvider1);
             RussianLanguageExamScorenumericUpDown.AddBinding(x => x.Value, targetApplicant, x => x.RussianLanguageExamScore, errorProvider1);
             InformaticExamScorenumericUpDown.AddBinding(x => x.Value, targetApplicant, x => x.InformaticExamScore, errorProvider1);
