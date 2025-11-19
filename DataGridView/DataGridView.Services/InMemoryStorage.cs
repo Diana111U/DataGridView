@@ -41,8 +41,7 @@ namespace DataGridView.Services
             ];
         }
 
-        /// <inheritdoc/>
-        public async Task<IEnumerable<ApplicantModel>> GetAllApplicants() => await Task.FromResult<IEnumerable<ApplicantModel>>(items);
+        async Task<IEnumerable<ApplicantModel>> IApplicantService.GetAllApplicants() => await Task.FromResult<IEnumerable<ApplicantModel>>(items);
 
         async Task IApplicantService.AddApplicant(ApplicantModel applicant)
         {
@@ -90,7 +89,7 @@ namespace DataGridView.Services
 
         async Task<ApplicantStatistics> IApplicantService.GetStatistics()
         {
-            var items = await GetAllApplicants();
+            var items = await ((IApplicantService)this).GetAllApplicants();
             var statistics = new ApplicantStatistics
             {
                 ApplicantCount = items.Count(),
