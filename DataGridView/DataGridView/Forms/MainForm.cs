@@ -15,9 +15,9 @@ namespace DataGridView.App.Forms
                 new ApplicantModel
                 {
                     FullName = "Иванов Иван Иванович",
-                    Gender = Models.Gender.Male,
+                    Gender = Entities.Models.Gender.Male,
                     BirthDay = DateTime.Parse("10.10.2005"),
-                    FormOfEducation = Models.FormOfEducation.FullTime,
+                    FormOfEducation = Entities.Models.FormOfEducation.FullTime,
                     MathExamScore = 62,
                     RussianLanguageExamScore = 87,
                     InformaticExamScore = 99
@@ -25,9 +25,9 @@ namespace DataGridView.App.Forms
                 new ApplicantModel
                 {
                     FullName = "Петрова Анна Михайловна",
-                    Gender = Models.Gender.Female,
+                    Gender = Entities.Models.Gender.Female,
                     BirthDay = DateTime.Parse("10.10.2004"),
-                    FormOfEducation = Models.FormOfEducation.PartTime,
+                    FormOfEducation = Entities.Models.FormOfEducation.PartTime,
                     MathExamScore = 90,
                     RussianLanguageExamScore = 93,
                     InformaticExamScore = 100
@@ -56,8 +56,8 @@ namespace DataGridView.App.Forms
             {
                 e.Value = applicant.Gender switch
                 {
-                    Models.Gender.Male => "Мужской",
-                    Models.Gender.Female => "Женский",
+                    Entities.Models.Gender.Male => "Мужской",
+                    Entities.Models.Gender.Female => "Женский",
                     _ => string.Empty,
                 };
             }
@@ -66,9 +66,9 @@ namespace DataGridView.App.Forms
             {
                 e.Value = applicant.FormOfEducation switch
                 {
-                    Models.FormOfEducation.FullTime => "Очная",
-                    Models.FormOfEducation.PartTime => "Очно-заочная",
-                    Models.FormOfEducation.Correspondence => "Заочная",
+                    Entities.Models.FormOfEducation.FullTime => "Очная",
+                    Entities.Models.FormOfEducation.PartTime => "Очно-заочная",
+                    Entities.Models.FormOfEducation.Correspondence => "Заочная",
                     _ => string.Empty,
                 };
             }

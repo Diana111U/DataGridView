@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DataGridView.AppConstants\DataGridView.AppConstants.csproj" />
-  </ItemGroup>
-
 </Project>

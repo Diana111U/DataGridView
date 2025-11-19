@@ -1,10 +1,6 @@
-﻿using DataGridView.Classes;
-using System;
-using System.Collections.Generic;
+﻿using DataGridView.AppConstants;
+using DataGridView.Entities.Models;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataGridView.Models
 {
@@ -27,7 +23,7 @@ namespace DataGridView.Models
         [StringLength(Constants.FullNameMaxLength, ErrorMessage = "{0} должно быть меньше {1} символов")]
         public string FullName { get; set; } = string.Empty;
 
-        /// <inheritdoc cref = "Models.Gender"/>
+        /// <inheritdoc cref = "Entities.Models.Gender"/>
         public Gender Gender { get; set; }
 
         /// <summary>
@@ -36,7 +32,7 @@ namespace DataGridView.Models
         [Required(ErrorMessage = "Дата рождения обязательна")]
         public DateTime BirthDay { get; set; } = DateTime.Now;
 
-        /// <inheritdoc cref = "Models.FormOfEducation"/>
+        /// <inheritdoc cref = "Entities.Models.FormOfEducation"/>
         public FormOfEducation FormOfEducation { get; set; }
 
         /// <summary>
