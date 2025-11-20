@@ -1,4 +1,8 @@
-﻿namespace DataGridView
+﻿using DataGridView.App.Forms;
+using DataGridView.Services;
+using DataGridView.Services.Contracts;
+
+namespace DataGridView.App
 {
     internal static class Program
     {
@@ -11,7 +15,8 @@
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            IApplicantService applicantService = new InMemoryStorage();
+            Application.Run(new MainForm(applicantService));
         }
     }
 }

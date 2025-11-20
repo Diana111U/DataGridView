@@ -1,4 +1,4 @@
-﻿namespace DataGridView
+﻿namespace DataGridView.App.Forms
 {
     partial class MainForm
     {
@@ -30,14 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             dataGridView1 = new System.Windows.Forms.DataGridView();
-            toolStrip1 = new ToolStrip();
-            AddButton = new ToolStripButton();
-            ChangeButton = new ToolStripButton();
-            DeleteButton = new ToolStripButton();
-            statusStrip1 = new StatusStrip();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
-            toolStripStatusLabel2 = new ToolStripStatusLabel();
-            toolStripStatusLabel3 = new ToolStripStatusLabel();
             FullName = new DataGridViewTextBoxColumn();
             Gender = new DataGridViewTextBoxColumn();
             BirthDay = new DataGridViewTextBoxColumn();
@@ -46,6 +38,14 @@
             RussianLanguageExamScore = new DataGridViewTextBoxColumn();
             InformaticExamScore = new DataGridViewTextBoxColumn();
             TotalAmount = new DataGridViewTextBoxColumn();
+            toolStrip1 = new ToolStrip();
+            AddButton = new ToolStripButton();
+            ChangeButton = new ToolStripButton();
+            DeleteButton = new ToolStripButton();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            toolStripStatusLabel2 = new ToolStripStatusLabel();
+            toolStripStatusLabel3 = new ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             toolStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -66,7 +66,62 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1020, 403);
             dataGridView1.TabIndex = 0;
-            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
+            dataGridView1.CellFormatting += DataGridView1_CellFormatting;
+            // 
+            // FullName
+            // 
+            FullName.DataPropertyName = "FullName";
+            FullName.HeaderText = "ФИО";
+            FullName.Name = "FullName";
+            FullName.ReadOnly = true;
+            // 
+            // Gender
+            // 
+            Gender.DataPropertyName = "Gender";
+            Gender.HeaderText = "Пол";
+            Gender.Name = "Gender";
+            Gender.ReadOnly = true;
+            // 
+            // BirthDay
+            // 
+            BirthDay.DataPropertyName = "BirthDay";
+            BirthDay.HeaderText = "Дата рождения";
+            BirthDay.Name = "BirthDay";
+            BirthDay.ReadOnly = true;
+            // 
+            // FormOfEducation
+            // 
+            FormOfEducation.DataPropertyName = "FormOfEducation";
+            FormOfEducation.HeaderText = "Форма обучения";
+            FormOfEducation.Name = "FormOfEducation";
+            FormOfEducation.ReadOnly = true;
+            // 
+            // MathExamScore
+            // 
+            MathExamScore.DataPropertyName = "MathExamScore";
+            MathExamScore.HeaderText = "Баллы ЕГЭ по математике";
+            MathExamScore.Name = "MathExamScore";
+            MathExamScore.ReadOnly = true;
+            // 
+            // RussianLanguageExamScore
+            // 
+            RussianLanguageExamScore.DataPropertyName = "RussianLanguageExamScore";
+            RussianLanguageExamScore.HeaderText = "Баллы ЕГЭ по русскому";
+            RussianLanguageExamScore.Name = "RussianLanguageExamScore";
+            RussianLanguageExamScore.ReadOnly = true;
+            // 
+            // InformaticExamScore
+            // 
+            InformaticExamScore.DataPropertyName = "InformaticExamScore";
+            InformaticExamScore.HeaderText = "Баллы ЕГЭ по информатике";
+            InformaticExamScore.Name = "InformaticExamScore";
+            InformaticExamScore.ReadOnly = true;
+            // 
+            // TotalAmount
+            // 
+            TotalAmount.HeaderText = "Общая сумма баллов";
+            TotalAmount.Name = "TotalAmount";
+            TotalAmount.ReadOnly = true;
             // 
             // toolStrip1
             // 
@@ -134,61 +189,6 @@
             toolStripStatusLabel3.Size = new Size(63, 17);
             toolStripStatusLabel3.Text = "Проходят:";
             // 
-            // FullName
-            // 
-            FullName.DataPropertyName = "FullName";
-            FullName.HeaderText = "ФИО";
-            FullName.Name = "FullName";
-            FullName.ReadOnly = true;
-            // 
-            // Gender
-            // 
-            Gender.DataPropertyName = "Gender";
-            Gender.HeaderText = "Пол";
-            Gender.Name = "Gender";
-            Gender.ReadOnly = true;
-            // 
-            // BirthDay
-            // 
-            BirthDay.DataPropertyName = "BirthDay";
-            BirthDay.HeaderText = "Дата рождения";
-            BirthDay.Name = "BirthDay";
-            BirthDay.ReadOnly = true;
-            // 
-            // FormOfEducation
-            // 
-            FormOfEducation.DataPropertyName = "FormOfEducation";
-            FormOfEducation.HeaderText = "Форма обучения";
-            FormOfEducation.Name = "FormOfEducation";
-            FormOfEducation.ReadOnly = true;
-            // 
-            // MathExamScore
-            // 
-            MathExamScore.DataPropertyName = "MathExamScore";
-            MathExamScore.HeaderText = "Баллы ЕГЭ по математике";
-            MathExamScore.Name = "MathExamScore";
-            MathExamScore.ReadOnly = true;
-            // 
-            // RussianLanguageExamScore
-            // 
-            RussianLanguageExamScore.DataPropertyName = "RussianLanguageExamScore";
-            RussianLanguageExamScore.HeaderText = "Баллы ЕГЭ по русскому";
-            RussianLanguageExamScore.Name = "RussianLanguageExamScore";
-            RussianLanguageExamScore.ReadOnly = true;
-            // 
-            // InformaticExamScore
-            // 
-            InformaticExamScore.DataPropertyName = "InformaticExamScore";
-            InformaticExamScore.HeaderText = "Баллы ЕГЭ по информатике";
-            InformaticExamScore.Name = "InformaticExamScore";
-            InformaticExamScore.ReadOnly = true;
-            // 
-            // TotalAmount
-            // 
-            TotalAmount.HeaderText = "Общая сумма баллов";
-            TotalAmount.Name = "TotalAmount";
-            TotalAmount.ReadOnly = true;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -199,6 +199,7 @@
             Controls.Add(toolStrip1);
             Name = "MainForm";
             Text = "Приёмная комиссия";
+            Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();

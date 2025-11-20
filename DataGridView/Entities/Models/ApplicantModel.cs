@@ -1,12 +1,7 @@
-﻿using DataGridView.Classes;
-using System;
-using System.Collections.Generic;
+﻿using DataGridView.AppConstants;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataGridView.Models
+namespace DataGridView.Entities.Models
 {
     /// <summary>
     /// Модель абитуриента
