@@ -113,7 +113,6 @@ namespace DataGridView.Manager
                 var ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
                 Log.Debug("GetStatistics() выполнен за {ms:F6} мс", ms);
             }
-            
         }
     }
 }
