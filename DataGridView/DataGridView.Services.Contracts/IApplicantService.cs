@@ -1,6 +1,6 @@
 ﻿using DataGridView.Entities.Models;
 
-namespace DataGridView.Services.Contracts
+namespace DataGridView.MemoryStorage.Contracts
 {
     /// <summary>
     /// Интерфейс сервиса для управления данными об абитуриентах

@@ -1,8 +1,8 @@
 ﻿using DataGridView.AppConstants;
 using DataGridView.Entities.Models;
-using DataGridView.Services.Contracts;
+using DataGridView.MemoryStorage.Contracts;
 
-namespace DataGridView.Services
+namespace DataGridView.MemoryStorage
 {
     /// <summary>
     /// Сервис для доступа к абитуриентам в памяти
@@ -21,9 +21,9 @@ namespace DataGridView.Services
                 new ApplicantModel
                 {
                     FullName = "Иванов Иван Иванович",
-                    Gender = Entities.Models.Gender.Male,
+                    Gender = Gender.Male,
                     BirthDay = DateTime.Parse("10.10.2005"),
-                    FormOfEducation = Entities.Models.FormOfEducation.FullTime,
+                    FormOfEducation = FormOfEducation.FullTime,
                     MathExamScore = 62,
                     RussianLanguageExamScore = 87,
                     InformaticExamScore = 99
@@ -31,9 +31,9 @@ namespace DataGridView.Services
                 new ApplicantModel
                 {
                     FullName = "Петрова Анна Михайловна",
-                    Gender = Entities.Models.Gender.Female,
+                    Gender = Gender.Female,
                     BirthDay = DateTime.Parse("10.10.2004"),
-                    FormOfEducation = Entities.Models.FormOfEducation.PartTime,
+                    FormOfEducation = FormOfEducation.PartTime,
                     MathExamScore = 90,
                     RussianLanguageExamScore = 93,
                     InformaticExamScore = 100
@@ -93,8 +93,8 @@ namespace DataGridView.Services
             var statistics = new ApplicantStatistics
             {
                 ApplicantCount = items.Count(),
-                CountScoreMoreThan150 = items.Count(x => (x.MathExamScore + x.RussianLanguageExamScore + x.InformaticExamScore) > 150),
-                CountPassing = items.Count(x => (x.MathExamScore + x.RussianLanguageExamScore + x.InformaticExamScore) > Constants.ScoreNeedToAdmission)
+                CountScoreMoreThan150 = items.Count(x => x.MathExamScore + x.RussianLanguageExamScore + x.InformaticExamScore > 150),
+                CountPassing = items.Count(x => x.MathExamScore + x.RussianLanguageExamScore + x.InformaticExamScore > Constants.ScoreNeedToAdmission)
             };
             return statistics;
         }

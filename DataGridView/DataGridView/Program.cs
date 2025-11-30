@@ -1,6 +1,6 @@
 ﻿using DataGridView.App.Forms;
-using DataGridView.Services;
-using DataGridView.Services.Contracts;
+using DataGridView.MemoryStorage;
+using DataGridView.MemoryStorage.Contracts;
 
 namespace DataGridView.App
 {

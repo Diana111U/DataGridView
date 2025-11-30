@@ -9,11 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ustinovadiana.DataGridView.Services" Version="1.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\DataGridView.Services.Contracts\DataGridView.Services.Contracts.csproj" />
+    <ProjectReference Include="..\DataGridView.Services.Contracts\DataGridView.MemoryStorage.Contracts.csproj" />
+    <ProjectReference Include="..\DataGridView.Services\DataGridView.MemoryStorage.csproj" />
   </ItemGroup>
 
 </Project>

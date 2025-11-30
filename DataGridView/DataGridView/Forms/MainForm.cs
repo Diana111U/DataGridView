@@ -1,5 +1,5 @@
 ﻿using DataGridView.Entities.Models;
-using DataGridView.Services.Contracts;
+using DataGridView.MemoryStorage.Contracts;
 
 namespace DataGridView.App.Forms
 {

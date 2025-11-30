@@ -1,4 +1,4 @@
-﻿namespace DataGridView.Services.Contracts
+﻿namespace DataGridView.MemoryStorage.Contracts
 {
     /// <summary>
     /// Класс для статистики абитуриентов
