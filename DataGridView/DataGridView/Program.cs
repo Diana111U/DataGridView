@@ -18,6 +18,8 @@ namespace DataGridView.App
                 .WriteTo.Debug()
                 .WriteTo.File("logs/log-.txt",
                     outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
+                .WriteTo.Seq("http://localhost:5341",
+                    apiKey: "br0jBx1kqPztmNwXmsJB")
                 .CreateLogger();
 
             Log.Debug("Тестовый лог в Debug окне");
