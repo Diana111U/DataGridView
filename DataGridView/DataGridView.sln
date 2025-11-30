@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36221.1 d17.14
+VisualStudioVersion = 17.14.36221.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView", "DataGridView\DataGridView.csproj", "{B712A1B6-35DF-47A1-BD44-D915990E20ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView.App", "DataGridView\DataGridView.App.csproj", "{B712A1B6-35DF-47A1-BD44-D915990E20ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView.Entities", "Entities\DataGridView.Entities.csproj", "{90168323-1BCD-40BA-829D-D3F9CFB41569}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView.Services", "DataGridView.Services\DataGridView.Services.csproj", "{3BC4404F-58B1-40D8-861A-D2100B9038B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView.Services.Contracts", "DataGridView.Services.Contracts\DataGridView.Services.Contracts.csproj", "{CDC44CEF-838D-4AEB-A44D-AACB547F50B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGridView.AppConstants", "DataGridView.AppConstants\DataGridView.AppConstants.csproj", "{881AC61B-6518-4F3C-BB29-B0D0527BEED6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{B712A1B6-35DF-47A1-BD44-D915990E20ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B712A1B6-35DF-47A1-BD44-D915990E20ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B712A1B6-35DF-47A1-BD44-D915990E20ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90168323-1BCD-40BA-829D-D3F9CFB41569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90168323-1BCD-40BA-829D-D3F9CFB41569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90168323-1BCD-40BA-829D-D3F9CFB41569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90168323-1BCD-40BA-829D-D3F9CFB41569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BC4404F-58B1-40D8-861A-D2100B9038B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BC4404F-58B1-40D8-861A-D2100B9038B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BC4404F-58B1-40D8-861A-D2100B9038B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BC4404F-58B1-40D8-861A-D2100B9038B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC44CEF-838D-4AEB-A44D-AACB547F50B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC44CEF-838D-4AEB-A44D-AACB547F50B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC44CEF-838D-4AEB-A44D-AACB547F50B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC44CEF-838D-4AEB-A44D-AACB547F50B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{881AC61B-6518-4F3C-BB29-B0D0527BEED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{881AC61B-6518-4F3C-BB29-B0D0527BEED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{881AC61B-6518-4F3C-BB29-B0D0527BEED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{881AC61B-6518-4F3C-BB29-B0D0527BEED6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

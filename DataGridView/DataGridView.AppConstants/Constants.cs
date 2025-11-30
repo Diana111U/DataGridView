@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataGridView.Classes
+﻿namespace DataGridView.AppConstants
 {
     public class Constants
     {
@@ -23,5 +16,10 @@ namespace DataGridView.Classes
         /// Минимальное кол-во баллов за ЕГЭ
         /// </summary>
         public const int MinScore = 0;
+
+        /// <summary>
+        /// Кол-во баллов нужное для зачисления
+        /// </summary>
+        public const int ScoreNeedToAdmission = 250;
     }
 }
