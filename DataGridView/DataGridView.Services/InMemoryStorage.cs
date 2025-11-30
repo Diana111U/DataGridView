@@ -86,17 +86,5 @@ namespace DataGridView.MemoryStorage
             }
             return 0;
         }
-
-        async Task<ApplicantStatistics> IApplicantStorage.GetStatistics()
-        {
-            var items = await ((IApplicantStorage)this).GetAllApplicants();
-            var statistics = new ApplicantStatistics
-            {
-                ApplicantCount = items.Count(),
-                CountScoreMoreThan150 = items.Count(x => x.MathExamScore + x.RussianLanguageExamScore + x.InformaticExamScore > 150),
-                CountPassing = items.Count(x => x.MathExamScore + x.RussianLanguageExamScore + x.InformaticExamScore > Constants.ScoreNeedToAdmission)
-            };
-            return statistics;
-        }
     }
 }
