@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataGridView.Manager.Contracts\DataGridView.Manager.Contracts.csproj" />
+    <ProjectReference Include="..\DataGridView.Manager\DataGridView.Manager.csproj" />
     <ProjectReference Include="..\DataGridView.Services.Contracts\DataGridView.MemoryStorage.Contracts.csproj" />
     <ProjectReference Include="..\DataGridView.Services\DataGridView.MemoryStorage.csproj" />
   </ItemGroup>

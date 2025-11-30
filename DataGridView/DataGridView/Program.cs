@@ -1,6 +1,6 @@
 ﻿using DataGridView.App.Forms;
+using DataGridView.Manager;
 using DataGridView.MemoryStorage;
-using DataGridView.MemoryStorage.Contracts;
 
 namespace DataGridView.App
 {
@@ -12,11 +12,11 @@ namespace DataGridView.App
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            var applicants = new InMemoryStorage();
+            var applicantManager = new ApplicantManager(applicants);
+
             ApplicationConfiguration.Initialize();
-            IApplicantStorage applicantService = new InMemoryStorage();
-            Application.Run(new MainForm(applicantService));
+            Application.Run(new MainForm(applicantManager));
         }
     }
 }
