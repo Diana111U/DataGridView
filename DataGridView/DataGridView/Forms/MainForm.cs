@@ -8,13 +8,13 @@ namespace DataGridView.App.Forms
     /// </summary>
     public partial class MainForm : Form
     {
-        private readonly IApplicantService applicantService;
+        private readonly IApplicantStorage applicantService;
         private readonly BindingSource bindingSource = [];
 
         /// <summary>
         /// Инициализирует экземпляр <see cref="<MainForm>"/>
         /// </summary>
-        public MainForm(IApplicantService applicantService)
+        public MainForm(IApplicantStorage applicantService)
         {
             InitializeComponent();
             this.applicantService = applicantService;

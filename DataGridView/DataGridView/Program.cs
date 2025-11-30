@@ -15,7 +15,7 @@ namespace DataGridView.App
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            IApplicantService applicantService = new InMemoryStorage();
+            IApplicantStorage applicantService = new InMemoryStorage();
             Application.Run(new MainForm(applicantService));
         }
     }

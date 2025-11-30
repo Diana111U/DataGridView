@@ -7,7 +7,7 @@ namespace DataGridView.MemoryStorage
     /// <summary>
     /// Сервис для доступа к абитуриентам в памяти
     /// </summary>
-    public class InMemoryStorage : IApplicantService
+    public class InMemoryStorage : IApplicantStorage
     {
         private readonly List<ApplicantModel> items;
 
@@ -41,15 +41,15 @@ namespace DataGridView.MemoryStorage
             ];
         }
 
-        async Task<IEnumerable<ApplicantModel>> IApplicantService.GetAllApplicants() => await Task.FromResult<IEnumerable<ApplicantModel>>(items);
+        async Task<IEnumerable<ApplicantModel>> IApplicantStorage.GetAllApplicants() => await Task.FromResult<IEnumerable<ApplicantModel>>(items);
 
-        async Task IApplicantService.AddApplicant(ApplicantModel applicant)
+        async Task IApplicantStorage.AddApplicant(ApplicantModel applicant)
         {
             items.Add(applicant);
             await Task.CompletedTask;
         }
 
-        async Task IApplicantService.ChangeApplicant(ApplicantModel applicant)
+        async Task IApplicantStorage.ChangeApplicant(ApplicantModel applicant)
         {
             var target = items.FirstOrDefault(x => x.Id == applicant.Id);
             if (target != null)
@@ -66,7 +66,7 @@ namespace DataGridView.MemoryStorage
             }
         }
 
-        async Task IApplicantService.DeleteApplicant(Guid Id)
+        async Task IApplicantStorage.DeleteApplicant(Guid Id)
         {
             var target = items.FirstOrDefault(x => x.Id == Id);
             if (target != null)
@@ -76,7 +76,7 @@ namespace DataGridView.MemoryStorage
             }
         }
 
-        async Task<int> IApplicantService.GetTotalAmount(Guid Id)
+        async Task<int> IApplicantStorage.GetTotalAmount(Guid Id)
         {
             var target = items.FirstOrDefault(y => y.Id == Id);
             if (target != null)
@@ -87,9 +87,9 @@ namespace DataGridView.MemoryStorage
             return 0;
         }
 
-        async Task<ApplicantStatistics> IApplicantService.GetStatistics()
+        async Task<ApplicantStatistics> IApplicantStorage.GetStatistics()
         {
-            var items = await ((IApplicantService)this).GetAllApplicants();
+            var items = await ((IApplicantStorage)this).GetAllApplicants();
             var statistics = new ApplicantStatistics
             {
                 ApplicantCount = items.Count(),

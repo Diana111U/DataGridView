@@ -5,7 +5,7 @@ namespace DataGridView.MemoryStorage.Contracts
     /// <summary>
     /// Интерфейс сервиса для управления данными об абитуриентах
     /// </summary>
-    public interface IApplicantService
+    public interface IApplicantStorage
     {
         /// <summary>
         /// Получить всех абитуриентов
