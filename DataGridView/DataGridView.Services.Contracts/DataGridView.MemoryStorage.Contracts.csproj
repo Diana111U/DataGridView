@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataGridView.Manager.Contracts\DataGridView.Manager.Contracts.csproj" />
     <ProjectReference Include="..\Entities\DataGridView.Entities.csproj" />
   </ItemGroup>
 
