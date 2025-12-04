@@ -1,11 +1,11 @@
 ﻿using DataGridView.Entities.Models;
 
-namespace DataGridView.Services.Contracts
+namespace DataGridView.MemoryStorage.Contracts
 {
     /// <summary>
-    /// Интерфейс сервиса для управления данными об абитуриентах
+    /// Интерфейс управления хранилища данных об абитуриентах
     /// </summary>
-    public interface IApplicantService
+    public interface IApplicantStorage
     {
         /// <summary>
         /// Получить всех абитуриентов
@@ -31,10 +31,5 @@ namespace DataGridView.Services.Contracts
         /// Получаем сумму баллов за все экзамены
         /// </summary>
         public Task<int> GetTotalAmount(Guid Id);
-
-        /// <summary>
-        /// Статистика абитуриента
-        /// </summary>
-        public Task<ApplicantStatistics> GetStatistics();
     }
 }
