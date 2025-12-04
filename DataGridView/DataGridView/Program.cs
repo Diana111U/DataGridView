@@ -1,6 +1,7 @@
 ﻿using DataGridView.App.Forms;
 using DataGridView.Manager;
 using DataGridView.MemoryStorage;
+using Microsoft.Extensions.Logging;
 using Serilog;
 
 namespace DataGridView.App
@@ -13,7 +14,7 @@ namespace DataGridView.App
         [STAThread]
         static void Main()
         {
-            Log.Logger = new LoggerConfiguration()
+            using var log = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Debug()
                 .WriteTo.File("logs/log-.txt",
@@ -23,10 +24,13 @@ namespace DataGridView.App
                     apiKey: "br0jBx1kqPztmNwXmsJB")
                 .CreateLogger();
 
-            Log.Debug("Тестовый лог в Debug окне");
+            using var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder.AddSerilog(log);
+            });
 
-            var applicants = new InMemoryStorage();
-            var applicantManager = new ApplicantManager(applicants);
+            var applicantsStorage = new InMemoryStorage();
+            var applicantManager = new ApplicantManager(applicantsStorage, loggerFactory);
 
             ApplicationConfiguration.Initialize();
             Application.Run(new MainForm(applicantManager));

@@ -2,18 +2,26 @@
 using DataGridView.Entities.Models;
 using DataGridView.Manager.Contracts;
 using DataGridView.MemoryStorage.Contracts;
-using Serilog;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
 namespace DataGridView.Manager
 {
+    /// <summary>
+    /// Класс управления хранилищем
+    /// </summary>
     public class ApplicantManager : IApplicantManager
     {
         private IApplicantStorage storage;
+        private ILogger logger;
 
-        public ApplicantManager(IApplicantStorage storage)
+        /// <summary>
+        /// Инициализирует экземпляр <see cref="<ApplicantManager>"/>
+        /// </summary>
+        public ApplicantManager(IApplicantStorage storage, ILoggerFactory loggerFactory)
         {
             this.storage = storage;
+            logger = loggerFactory.CreateLogger<ApplicantManager>();
         }
 
         async Task<IEnumerable<ApplicantModel>> IApplicantManager.GetAllApplicants()
@@ -28,7 +36,7 @@ namespace DataGridView.Manager
             {
                 sw.Stop();
                 var ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
-                Log.Debug("GetAllApplicants() выполнен за {ms:F6} мс", ms);
+                logger.LogInformation("GetAllApplicants() выполнен за {ms:F6} мс", ms);
             }
         }
 
@@ -43,7 +51,7 @@ namespace DataGridView.Manager
             {
                 sw.Stop();
                 var ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
-                Log.Debug("AddApplicant() выполнен за {ms:F6} мс", ms);
+                logger.LogInformation("AddApplicant() выполнен за {ms:F6} мс", ms);
             }
         }
 
@@ -58,7 +66,7 @@ namespace DataGridView.Manager
             {
                 sw.Stop();
                 var ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
-                Log.Debug("ChangeApplicant() выполнен за {ms:F6} мс", ms);
+                logger.LogInformation("ChangeApplicant() выполнен за {ms:F6} мс", ms);
             }
         }
 
@@ -73,7 +81,7 @@ namespace DataGridView.Manager
             {
                 sw.Stop();
                 var ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
-                Log.Debug("DeleteApplicant() выполнен за {ms:F6} мс", ms);
+                logger.LogInformation("DeleteApplicant() выполнен за {ms:F6} мс", ms);
             }
         }
 
@@ -89,7 +97,7 @@ namespace DataGridView.Manager
             {
                 sw.Stop();
                 var ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
-                Log.Debug("GetTotalAmount() выполнен за {ms:F6} мс", ms);
+                logger.LogInformation("GetTotalAmount() выполнен за {ms:F6} мс", ms);
             }
         }
 
@@ -111,7 +119,7 @@ namespace DataGridView.Manager
             {
                 sw.Stop();
                 var ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
-                Log.Debug("GetStatistics() выполнен за {ms:F6} мс", ms);
+                logger.LogInformation("GetStatistics() выполнен за {ms:F6} мс", ms);
             }
         }
     }

@@ -6,6 +6,8 @@ using DataGridView.MemoryStorage.Contracts;
 using FluentAssertions;
 using Moq;
 using Xunit;
+using Microsoft.Extensions.Logging;
+
 
 namespace DataGridView.Manager.Tests
 {
@@ -23,7 +25,14 @@ namespace DataGridView.Manager.Tests
         public ApplicantManagerTests()
         {
             storageMock = new Mock<IApplicantStorage>();
-            applicantManager = new ApplicantManager(storageMock.Object);
+
+            var mockLogger = new Mock<ILogger>();
+            var mockLoggerFactory = new Mock<ILoggerFactory>();
+            mockLoggerFactory
+                .Setup(f => f.CreateLogger(It.IsAny<string>()))
+                .Returns(mockLogger.Object);
+
+            applicantManager = new ApplicantManager(storageMock.Object, mockLoggerFactory.Object);
         }
 
         /// <summary>
@@ -43,10 +52,7 @@ namespace DataGridView.Manager.Tests
 
             var result = await applicantManager.GetAllApplicants();
 
-            result.Should().NotBeEmpty()
-                .And.HaveCount(2)
-                .And.ContainSingle(x => x.Id == applicant1.Id)
-                .And.ContainSingle(x => x.Id == applicant2.Id);
+            result.Should().BeEquivalentTo([applicant1, applicant2]);
             storageMock.Verify(x => x.GetAllApplicants(), Times.Once);
             storageMock.VerifyNoOtherCalls();
         }
