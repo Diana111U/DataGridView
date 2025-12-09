@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataGridView.DataBaseStorage\DataGridView.DataBaseStorage.csproj" />
     <ProjectReference Include="..\DataGridView.Manager.Contracts\DataGridView.Manager.Contracts.csproj" />
     <ProjectReference Include="..\DataGridView.Manager\DataGridView.Manager.csproj" />
     <ProjectReference Include="..\DataGridView.Services.Contracts\DataGridView.MemoryStorage.Contracts.csproj" />

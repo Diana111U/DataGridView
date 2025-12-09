@@ -9,7 +9,7 @@ namespace DataGridView.DataBaseStorage
         /// <summary>
         /// Получить всех абитуриентов.
         /// </summary>
-        public async Task<List<ApplicantModel>> GetAllApplicants()
+        public async Task<IEnumerable<ApplicantModel>> GetAllApplicants()
         {
             using var database = new DataGridViewContext();
             return await database.Applicants.AsNoTracking().ToListAsync();

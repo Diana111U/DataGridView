@@ -19,7 +19,7 @@ namespace DataGridView.DataBaseStorage
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
         optionsBuilder.UseSqlServer(
-            @"Server=(localdb)\mssqllocaldb;Database=DataGridViewProjectDatabase;Trusted_Connection=True;");
+            @"Server=(localdb)\mssqllocaldb;Database=DataGridViewDatabase;Trusted_Connection=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
