@@ -8,7 +8,6 @@ namespace DataGridView.Entities.Models
     /// </summary>
     public class ApplicantModel
     {
-
         /// <summary>
         /// Id абитуриента
         /// </summary>
