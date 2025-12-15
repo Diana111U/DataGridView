@@ -1,5 +1,4 @@
-﻿@using DataGridView.Entities.Models
-@model ApplicantIndexViewModel
+﻿@model ApplicantIndexViewModel
 @{
     ViewData["Title"] = "Абитуриенты";
 }
@@ -12,7 +11,7 @@
                 <a asp-action="Create" class="btn btn-primary">Добавить абитуриента</a>
             </div>
 
-            <!-- Статистика -->
+            <!-- Статистика (ваш стиль) -->
             <div class="row mb-4">
                 <div class="col-md-3">
                     <div class="card bg-primary text-white">
@@ -40,11 +39,8 @@
                 </div>
             </div>
 
-            <!-- Таблица -->
+            <!-- Таблица как в примере -->
             <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    <h5 class="mb-0">Список абитуриентов</h5>
-                </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table table-hover mb-0">
@@ -66,7 +62,7 @@
                                 {
                                     <tr>
                                         <td>@item.FullName</td>
-                                        <td>@(item.Gender == Gender.Female? "Женский" : "Мужской")</td>
+                                        <td>@(item.Gender == Gender.Male ? "Мужской" : "Женский")</td>
                                         <td>@item.BirthDay.ToString("dd.MM.yyyy")</td>
                                         <td>@(item.FormOfEducation == FormOfEducation.FullTime ? "Очная" : "Заочная")</td>
                                         <td>@item.MathExamScore</td>
@@ -74,10 +70,8 @@
                                         <td>@item.InformaticExamScore</td>
                                         <td>@(item.MathExamScore + item.RussianLanguageExamScore + item.InformaticExamScore)</td>
                                         <td>
-                                            <div class="btn-group btn-group-sm" role="group">
-                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">Изменить</a>
-                                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Удалить</a>
-                                            </div>
+                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Изменить</a>
+                                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Удалить</a>
                                         </td>
                                     </tr>
                                 }
@@ -89,3 +83,4 @@
         </div>
     </div>
 </div>
+@using DataGridView.Entities.Models
