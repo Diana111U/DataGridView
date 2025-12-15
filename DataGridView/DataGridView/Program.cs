@@ -1,4 +1,5 @@
 ﻿using DataGridView.App.Forms;
+using DataGridView.DataBaseStorage;
 using DataGridView.Manager;
 using DataGridView.MemoryStorage;
 using Microsoft.Extensions.Logging;
@@ -29,7 +30,7 @@ namespace DataGridView.App
                 builder.AddSerilog(log);
             });
 
-            var applicantsStorage = new InMemoryStorage();
+            var applicantsStorage = new DataGridViewStorage();
             var applicantManager = new ApplicantManager(applicantsStorage, loggerFactory);
 
             ApplicationConfiguration.Initialize();
