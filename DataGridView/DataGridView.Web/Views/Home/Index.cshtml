@@ -70,7 +70,7 @@
                                         <td>@item.InformaticExamScore</td>
                                         <td>@(item.MathExamScore + item.RussianLanguageExamScore + item.InformaticExamScore)</td>
                                         <td>
-                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Изменить</a>
+                                            <a asp-action="Change" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Изменить</a>
                                             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">Удалить</a>
                                         </td>
                                     </tr>

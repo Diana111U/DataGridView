@@ -23,6 +23,11 @@ namespace DataGridView.Manager.Contracts
         public Task ChangeApplicant(ApplicantModel applicant);
 
         /// <summary>
+        /// Нахождение абитуриента по ID
+        /// </summary>
+        public Task<ApplicantModel?> GetApplicantById(Guid id);
+
+        /// <summary>
         /// Удаление абитуриента
         /// </summary>
         public Task DeleteApplicant(Guid Id);

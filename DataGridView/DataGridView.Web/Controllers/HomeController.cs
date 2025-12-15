@@ -58,6 +58,30 @@ namespace DataGridView.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Change(Guid id)
+        {
+            var applicant = await applicantManager.GetApplicantById(id);
+            if (applicant == null)
+            {
+                return NotFound();
+            }
+
+            return View(applicant);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Change(ApplicantModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await applicantManager.ChangeApplicant(model);
+            return RedirectToAction(nameof(Index));
+        }
+
         /// <summary>
         /// Отображает страницу с политикой конфиденциальности
         /// </summary>

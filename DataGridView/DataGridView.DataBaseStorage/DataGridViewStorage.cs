@@ -50,6 +50,16 @@ namespace DataGridView.DataBaseStorage
         }
 
         /// <summary>
+        /// Получить одного абитуриента по Id.
+        /// </summary>
+        public async Task<ApplicantModel?> GetApplicantById(Guid id)
+        {
+            using var database = new DataGridViewContext();
+            // Чтение без трекинга, так как в MVC мы просто отображаем данные
+            return await database.Applicants.AsNoTracking().FirstOrDefaultAsync(a => a.Id == id);
+        }
+
+        /// <summary>
         /// Получить сумму всех экзаменов абитуриента.
         /// </summary>
         public async Task<int> GetTotalAmount(Guid id)

@@ -65,6 +65,12 @@ namespace DataGridView.MemoryStorage
             }
         }
 
+        async Task<ApplicantModel?> IApplicantStorage.GetApplicantById(Guid id)
+        {
+            var target = items.FirstOrDefault(x => x.Id == id);
+            return await Task.FromResult(target);
+        }
+
         async Task IApplicantStorage.DeleteApplicant(Guid Id)
         {
             var target = items.FirstOrDefault(x => x.Id == Id);

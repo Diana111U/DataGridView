@@ -103,6 +103,25 @@ namespace DataGridView.Manager.Tests
         }
 
         /// <summary>
+        /// Получить одного абитуриента по Id.
+        /// </summary>
+        [Fact]
+        public async Task GetApplicantByIdShouldReturnValue()
+        {
+            var applicant = TestEntityProvider.Shared.Create<ApplicantModel>();
+
+            storageMock
+                .Setup(x => x.GetApplicantById(applicant.Id))
+                .ReturnsAsync(applicant);
+
+            var result = await applicantManager.GetApplicantById(applicant.Id);
+
+            result.Should().BeEquivalentTo(applicant);
+            storageMock.Verify(x => x.GetApplicantById(applicant.Id), Times.Once);
+            storageMock.VerifyNoOtherCalls();
+        }
+
+        /// <summary>
         /// Проверяет, что метод получения итоговой суммы по абитуриенту корректно обращается к хранилищу и возвращает значение
         /// </summary>
         [Fact]

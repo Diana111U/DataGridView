@@ -70,6 +70,22 @@ namespace DataGridView.Manager
             }
         }
 
+        async Task<ApplicantModel?> IApplicantManager.GetApplicantById(Guid id)
+        {
+            var sw = Stopwatch.StartNew();
+            try
+            {
+                return await storage.GetApplicantById(id);
+            }
+            finally
+            {
+                sw.Stop();
+                var ms = sw.ElapsedTicks * 1000.0 / Stopwatch.Frequency;
+                logger.LogInformation("GetApplicantById() выполнен за {ms:F6} мс", ms);
+            }
+        }
+
+
         async Task IApplicantManager.DeleteApplicant(Guid Id)
         {
             var sw = Stopwatch.StartNew();
