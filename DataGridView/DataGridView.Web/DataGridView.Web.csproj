@@ -6,4 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DataGridView.DataBaseStorage\DataGridView.DataBaseStorage.csproj" />
+    <ProjectReference Include="..\DataGridView.Manager.Contracts\DataGridView.Manager.Contracts.csproj" />
+    <ProjectReference Include="..\DataGridView.Manager\DataGridView.Manager.csproj" />
+  </ItemGroup>
+
 </Project>
