@@ -1,3 +1,4 @@
+﻿using DataGridView.Manager.Contracts;
 using DataGridView.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -6,16 +7,26 @@ namespace DataGridView.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IApplicantManager applicantManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IApplicantManager applicantManager)
         {
-            _logger = logger;
+            this.applicantManager = applicantManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var applicants = await applicantManager.GetAllApplicants();
+            var statistics = await applicantManager.GetStatistics();
+
+            var model = new ApplicantIndexViewModel
+            {
+                Applicants = applicants.ToList(),
+                Statistics = statistics
+            };
+
+            return View(model);
+
         }
 
         public IActionResult Privacy()
