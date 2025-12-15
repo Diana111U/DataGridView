@@ -42,9 +42,10 @@
                             <div class="col-md-6 mb-3">
                                 <label asp-for="FormOfEducation" class="form-label"></label>
                                 <select asp-for="FormOfEducation" class="form-select">
-                                    <option value="">Выберите форму</option>
+                                    <option value="">Выберите форму обучения</option>
                                     <option value="FullTime">Очная</option>
-                                    <option value="PartTime">Заочная</option>
+                                    <option value="PartTime">Очно-заочная</option>
+                                    <option value="Correspondence">Заочная</option>
                                 </select>
                                 <span asp-validation-for="FormOfEducation" class="text-danger"></span>
                             </div>

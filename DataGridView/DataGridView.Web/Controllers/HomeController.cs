@@ -1,5 +1,4 @@
 ﻿using DataGridView.Entities.Models;
-using DataGridView.Manager;
 using DataGridView.Manager.Contracts;
 using DataGridView.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -58,6 +57,9 @@ namespace DataGridView.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Отображает форму редактирования выбранного абитуриента
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> Change(Guid id)
         {
@@ -70,6 +72,9 @@ namespace DataGridView.Web.Controllers
             return View(applicant);
         }
 
+        /// <summary>
+        /// Принимает изменения абитуриента из формы и сохраняет их
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Change(ApplicantModel model)
         {
@@ -79,6 +84,31 @@ namespace DataGridView.Web.Controllers
             }
 
             await applicantManager.ChangeApplicant(model);
+            return RedirectToAction(nameof(Index));
+        }
+
+        /// <summary>
+        /// Отображает страницу подтверждения удаления выбранного абитуриента
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var applicant = await applicantManager.GetApplicantById(id);
+            if (applicant == null)
+            {
+                return NotFound();
+            }
+
+            return View(applicant);
+        }
+
+        /// <summary>
+        /// Выполняет удаление абитуриента после подтверждения пользователем
+        /// </summary>
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        {
+            await applicantManager.DeleteApplicant(id);
             return RedirectToAction(nameof(Index));
         }
 

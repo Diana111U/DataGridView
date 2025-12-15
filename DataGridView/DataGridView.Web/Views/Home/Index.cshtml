@@ -64,7 +64,19 @@
                                         <td>@item.FullName</td>
                                         <td>@(item.Gender == Gender.Male ? "Мужской" : "Женский")</td>
                                         <td>@item.BirthDay.ToString("dd.MM.yyyy")</td>
-                                        <td>@(item.FormOfEducation == FormOfEducation.FullTime ? "Очная" : "Заочная")</td>
+                                        <td>
+                                            @{
+                                                var form = item.FormOfEducation;
+                                                var formText = form switch
+                                                {
+                                                    FormOfEducation.FullTime => "Очная",
+                                                    FormOfEducation.PartTime => "Очно-заочная",
+                                                    FormOfEducation.Correspondence => "Заочная",
+                                                    _ => "Неизвестно"
+                                                };
+                                            }
+                                            @formText
+                                        </td>
                                         <td>@item.MathExamScore</td>
                                         <td>@item.RussianLanguageExamScore</td>
                                         <td>@item.InformaticExamScore</td>
