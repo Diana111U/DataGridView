@@ -18,6 +18,7 @@ namespace DataGridView.Manager.Tests
     {
         private readonly IApplicantManager applicantManager;
         private readonly Mock<IApplicantStorage> storageMock;
+        private readonly CancellationToken cancellationToken = CancellationToken.None;
 
         /// <summary>
         /// Инициализирует экземпляр <see cref="<ApplicantManagerTests>"/>
@@ -50,10 +51,10 @@ namespace DataGridView.Manager.Tests
                     applicant2,
                 ]);
 
-            var result = await applicantManager.GetAllApplicants();
+            var result = await applicantManager.GetAllApplicants(cancellationToken);
 
             result.Should().BeEquivalentTo([applicant1, applicant2]);
-            storageMock.Verify(x => x.GetAllApplicants(), Times.Once);
+            storageMock.Verify(x => x.GetAllApplicants(cancellationToken), Times.Once);
             storageMock.VerifyNoOtherCalls();
         }
 
@@ -65,10 +66,10 @@ namespace DataGridView.Manager.Tests
         {
             var applicant = TestEntityProvider.Shared.Create<ApplicantModel>();
 
-            var act = () => applicantManager.AddApplicant(applicant);
+            var act = () => applicantManager.AddApplicant(applicant, cancellationToken);
 
             await act.Should().NotThrowAsync();
-            storageMock.Verify(x => x.AddApplicant(applicant), Times.Once);
+            storageMock.Verify(x => x.AddApplicant(applicant, cancellationToken), Times.Once);
             storageMock.VerifyNoOtherCalls();
         }
 
@@ -80,10 +81,10 @@ namespace DataGridView.Manager.Tests
         {
             var applicant = TestEntityProvider.Shared.Create<ApplicantModel>();
 
-            var act = () => applicantManager.ChangeApplicant(applicant);
+            var act = () => applicantManager.ChangeApplicant(applicant, cancellationToken);
 
             await act.Should().NotThrowAsync();
-            storageMock.Verify(x => x.ChangeApplicant(applicant), Times.Once);
+            storageMock.Verify(x => x.ChangeApplicant(applicant, cancellationToken), Times.Once);
             storageMock.VerifyNoOtherCalls();
         }
 
@@ -95,10 +96,10 @@ namespace DataGridView.Manager.Tests
         {
             var applicant = TestEntityProvider.Shared.Create<ApplicantModel>();
 
-            var act = () => applicantManager.DeleteApplicant(applicant.Id);
+            var act = () => applicantManager.DeleteApplicant(applicant.Id, cancellationToken);
 
             await act.Should().NotThrowAsync();
-            storageMock.Verify(x => x.DeleteApplicant(applicant.Id), Times.Once);
+            storageMock.Verify(x => x.DeleteApplicant(applicant.Id, cancellationToken), Times.Once);
             storageMock.VerifyNoOtherCalls();
         }
 
@@ -111,13 +112,13 @@ namespace DataGridView.Manager.Tests
             var applicant = TestEntityProvider.Shared.Create<ApplicantModel>();
 
             storageMock
-                .Setup(x => x.GetApplicantById(applicant.Id))
+                .Setup(x => x.GetApplicantById(applicant.Id, cancellationToken))
                 .ReturnsAsync(applicant);
 
-            var result = await applicantManager.GetApplicantById(applicant.Id);
+            var result = await applicantManager.GetApplicantById(applicant.Id, cancellationToken);
 
             result.Should().BeEquivalentTo(applicant);
-            storageMock.Verify(x => x.GetApplicantById(applicant.Id), Times.Once);
+            storageMock.Verify(x => x.GetApplicantById(applicant.Id, cancellationToken), Times.Once);
             storageMock.VerifyNoOtherCalls();
         }
 
@@ -130,13 +131,13 @@ namespace DataGridView.Manager.Tests
             var applicant = TestEntityProvider.Shared.Create<ApplicantModel>();
             var expected = 75;
 
-            storageMock.Setup(x => x.GetTotalAmount(applicant.Id))
+            storageMock.Setup(x => x.GetTotalAmount(applicant.Id, cancellationToken))
                 .ReturnsAsync(expected);
 
-            var result = await applicantManager.GetTotalAmount(applicant.Id);
+            var result = await applicantManager.GetTotalAmount(applicant.Id, cancellationToken);
 
             result.Should().Be(expected);
-            storageMock.Verify(x => x.GetTotalAmount(applicant.Id), Times.Once);
+            storageMock.Verify(x => x.GetTotalAmount(applicant.Id, cancellationToken), Times.Once);
             storageMock.VerifyNoOtherCalls();
         }
 
@@ -157,7 +158,7 @@ namespace DataGridView.Manager.Tests
             storageMock.Setup(x => x.GetAllApplicants())
                 .ReturnsAsync([applicant1, applicant2]);
 
-            var result = await applicantManager.GetStatistics();
+            var result = await applicantManager.GetStatistics(cancellationToken);
 
             var score1 = applicant1.MathExamScore + applicant1.RussianLanguageExamScore + applicant1.InformaticExamScore;
             var score2 = applicant2.MathExamScore + applicant2.RussianLanguageExamScore + applicant2.InformaticExamScore;
@@ -167,7 +168,7 @@ namespace DataGridView.Manager.Tests
             result.CountPassing.Should().Be(
                 (score1 > Constants.ScoreNeedToAdmission ? 1 : 0) +
                 (score2 > Constants.ScoreNeedToAdmission ? 1 : 0));
-            storageMock.Verify(x => x.GetAllApplicants(), Times.Once);
+            storageMock.Verify(x => x.GetAllApplicants(cancellationToken), Times.Once);
             storageMock.VerifyNoOtherCalls();
         }
     }

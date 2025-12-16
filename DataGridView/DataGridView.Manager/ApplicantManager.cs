@@ -24,12 +24,12 @@ namespace DataGridView.Manager
             logger = loggerFactory.CreateLogger<ApplicantManager>();
         }
 
-        async Task<IEnumerable<ApplicantModel>> IApplicantManager.GetAllApplicants()
+        async Task<IEnumerable<ApplicantModel>> IApplicantManager.GetAllApplicants(CancellationToken cancellationToken)
         {
             var sw = Stopwatch.StartNew();
             try
             {
-                var result = await storage.GetAllApplicants();
+                var result = await storage.GetAllApplicants(cancellationToken);
                 return result;
             }
             finally
@@ -40,12 +40,12 @@ namespace DataGridView.Manager
             }
         }
 
-        async Task IApplicantManager.AddApplicant(ApplicantModel applicant)
+        async Task IApplicantManager.AddApplicant(ApplicantModel applicant, CancellationToken cancellationToken)
         {
             var sw = Stopwatch.StartNew();
             try
             {
-                await storage.AddApplicant(applicant);
+                await storage.AddApplicant(applicant, cancellationToken);
             }
             finally
             {
@@ -55,12 +55,12 @@ namespace DataGridView.Manager
             }
         }
 
-        async Task IApplicantManager.ChangeApplicant(ApplicantModel applicant)
+        async Task IApplicantManager.ChangeApplicant(ApplicantModel applicant, CancellationToken cancellationToken)
         {
             var sw = Stopwatch.StartNew();
             try
             {
-                await storage.ChangeApplicant(applicant);
+                await storage.ChangeApplicant(applicant, cancellationToken);
             }
             finally
             {
@@ -70,12 +70,12 @@ namespace DataGridView.Manager
             }
         }
 
-        async Task<ApplicantModel?> IApplicantManager.GetApplicantById(Guid id)
+        async Task<ApplicantModel?> IApplicantManager.GetApplicantById(Guid id, CancellationToken cancellationToken)
         {
             var sw = Stopwatch.StartNew();
             try
             {
-                return await storage.GetApplicantById(id);
+                return await storage.GetApplicantById(id, cancellationToken);
             }
             finally
             {
@@ -86,12 +86,12 @@ namespace DataGridView.Manager
         }
 
 
-        async Task IApplicantManager.DeleteApplicant(Guid Id)
+        async Task IApplicantManager.DeleteApplicant(Guid Id, CancellationToken cancellationToken)
         {
             var sw = Stopwatch.StartNew();
             try
             {
-                await storage.DeleteApplicant(Id);
+                await storage.DeleteApplicant(Id, cancellationToken);
             }
             finally
             {
@@ -101,12 +101,12 @@ namespace DataGridView.Manager
             }
         }
 
-        async Task<int> IApplicantManager.GetTotalAmount(Guid Id)
+        async Task<int> IApplicantManager.GetTotalAmount(Guid Id, CancellationToken cancellationToken)
         {
             var sw = Stopwatch.StartNew();
             try
             {
-                var result = await storage.GetTotalAmount(Id);
+                var result = await storage.GetTotalAmount(Id, cancellationToken);
                 return result;
             }
             finally
@@ -117,12 +117,12 @@ namespace DataGridView.Manager
             }
         }
 
-        async Task<ApplicantStatistics> IApplicantManager.GetStatistics()
+        async Task<ApplicantStatistics> IApplicantManager.GetStatistics(CancellationToken cancellationToken)
         {
             var sw = Stopwatch.StartNew();
             try
             {
-                var items = await (storage).GetAllApplicants();
+                var items = await (storage).GetAllApplicants(cancellationToken);
                 var statistics = new ApplicantStatistics
                 {
                     ApplicantCount = items.Count(),

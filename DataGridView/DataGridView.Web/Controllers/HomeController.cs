@@ -21,10 +21,10 @@ namespace DataGridView.Web.Controllers
         /// <summary>
         /// Отображает главную страницу со списком абитуриентов и статистикой
         /// </summary>
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
-            var applicants = await applicantManager.GetAllApplicants();
-            var statistics = await applicantManager.GetStatistics();
+            var applicants = await applicantManager.GetAllApplicants(cancellationToken);
+            var statistics = await applicantManager.GetStatistics(cancellationToken);
 
             var model = new ApplicantIndexViewModel
             {
@@ -46,14 +46,14 @@ namespace DataGridView.Web.Controllers
         /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ApplicantModel model)
+        public async Task<IActionResult> Create(ApplicantModel model, CancellationToken cancellationToken)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            await applicantManager.AddApplicant(model);
+            await applicantManager.AddApplicant(model, cancellationToken);
             return RedirectToAction(nameof(Index));
         }
 
@@ -61,9 +61,9 @@ namespace DataGridView.Web.Controllers
         /// Отображает форму редактирования выбранного абитуриента
         /// </summary>
         [HttpGet]
-        public async Task<IActionResult> Change(Guid id)
+        public async Task<IActionResult> Change(Guid id, CancellationToken cancellationToken)
         {
-            var applicant = await applicantManager.GetApplicantById(id);
+            var applicant = await applicantManager.GetApplicantById(id, cancellationToken);
             if (applicant == null)
             {
                 return NotFound();
@@ -76,14 +76,14 @@ namespace DataGridView.Web.Controllers
         /// Принимает изменения абитуриента из формы и сохраняет их
         /// </summary>
         [HttpPost]
-        public async Task<IActionResult> Change(ApplicantModel model)
+        public async Task<IActionResult> Change(ApplicantModel model, CancellationToken cancellationToken)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            await applicantManager.ChangeApplicant(model);
+            await applicantManager.ChangeApplicant(model, cancellationToken);
             return RedirectToAction(nameof(Index));
         }
 
@@ -91,9 +91,9 @@ namespace DataGridView.Web.Controllers
         /// Отображает страницу подтверждения удаления выбранного абитуриента
         /// </summary>
         [HttpGet]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
         {
-            var applicant = await applicantManager.GetApplicantById(id);
+            var applicant = await applicantManager.GetApplicantById(id, cancellationToken);
             if (applicant == null)
             {
                 return NotFound();
@@ -106,9 +106,9 @@ namespace DataGridView.Web.Controllers
         /// Выполняет удаление абитуриента после подтверждения пользователем
         /// </summary>
         [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id, CancellationToken cancellationToken)
         {
-            await applicantManager.DeleteApplicant(id);
+            await applicantManager.DeleteApplicant(id, cancellationToken);
             return RedirectToAction(nameof(Index));
         }
 

@@ -40,15 +40,15 @@ namespace DataGridView.MemoryStorage
             ];
         }
 
-        async Task<IEnumerable<ApplicantModel>> IApplicantStorage.GetAllApplicants() => await Task.FromResult<IEnumerable<ApplicantModel>>(items);
+        async Task<IEnumerable<ApplicantModel>> IApplicantStorage.GetAllApplicants(CancellationToken cancellationToken) => await Task.FromResult<IEnumerable<ApplicantModel>>(items);
 
-        async Task IApplicantStorage.AddApplicant(ApplicantModel applicant)
+        async Task IApplicantStorage.AddApplicant(ApplicantModel applicant, CancellationToken cancellationToken)
         {
             items.Add(applicant);
             await Task.CompletedTask;
         }
 
-        async Task IApplicantStorage.ChangeApplicant(ApplicantModel applicant)
+        async Task IApplicantStorage.ChangeApplicant(ApplicantModel applicant, CancellationToken cancellationToken)
         {
             var target = items.FirstOrDefault(x => x.Id == applicant.Id);
             if (target != null)
@@ -65,13 +65,13 @@ namespace DataGridView.MemoryStorage
             }
         }
 
-        async Task<ApplicantModel?> IApplicantStorage.GetApplicantById(Guid id)
+        async Task<ApplicantModel?> IApplicantStorage.GetApplicantById(Guid id, CancellationToken cancellationToken)
         {
             var target = items.FirstOrDefault(x => x.Id == id);
             return await Task.FromResult(target);
         }
 
-        async Task IApplicantStorage.DeleteApplicant(Guid Id)
+        async Task IApplicantStorage.DeleteApplicant(Guid Id, CancellationToken cancellationToken)
         {
             var target = items.FirstOrDefault(x => x.Id == Id);
             if (target != null)
@@ -81,7 +81,7 @@ namespace DataGridView.MemoryStorage
             }
         }
 
-        async Task<int> IApplicantStorage.GetTotalAmount(Guid Id)
+        async Task<int> IApplicantStorage.GetTotalAmount(Guid Id, CancellationToken cancellationToken)
         {
             var target = items.FirstOrDefault(y => y.Id == Id);
             if (target != null)

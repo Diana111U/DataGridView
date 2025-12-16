@@ -57,7 +57,7 @@ namespace DataGridView.App.Forms
 
             if (col.Name == "TotalAmount")
             {
-                var totalAmount = await applicantManager.GetTotalAmount(applicant.Id);
+                var totalAmount = await applicantManager.GetTotalAmount(applicant.Id, CancellationToken.None);
                 e.Value = totalAmount;
             }
         }
@@ -67,7 +67,7 @@ namespace DataGridView.App.Forms
         /// </summary>
         public async Task OnUpdate()
         {
-            var items = await applicantManager.GetAllApplicants();
+            var items = await applicantManager.GetAllApplicants(CancellationToken.None);
             bindingSource.DataSource = items.ToList();
             bindingSource.ResetBindings(false);
             await SetStatistic();
@@ -78,7 +78,7 @@ namespace DataGridView.App.Forms
         /// </summary>
         public async Task SetStatistic()
         {
-            var statistics = await applicantManager.GetStatistics();
+            var statistics = await applicantManager.GetStatistics(CancellationToken.None);
 
             toolStripStatusLabel1.Text = $"Кол-во абитур-ов: {statistics.ApplicantCount}";
             toolStripStatusLabel2.Text = $"Кол-во абитур-ов с баллами > 150: {statistics.CountScoreMoreThan150}";
@@ -93,7 +93,7 @@ namespace DataGridView.App.Forms
             var addForm = new ApplicantForm();
             if (addForm.ShowDialog() == DialogResult.OK)
             {
-                await applicantManager.AddApplicant(addForm.CurrentApplicant);
+                await applicantManager.AddApplicant(addForm.CurrentApplicant, CancellationToken.None);
                 await OnUpdate();
             }
         }
@@ -114,7 +114,7 @@ namespace DataGridView.App.Forms
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                await applicantManager.DeleteApplicant(applicant.Id);
+                await applicantManager.DeleteApplicant(applicant.Id, CancellationToken.None);
                 await OnUpdate();
             }
         }
@@ -132,7 +132,7 @@ namespace DataGridView.App.Forms
             var editForm = new ApplicantForm(applicant);
             if (editForm.ShowDialog() == DialogResult.OK)
             {
-                await applicantManager.ChangeApplicant(editForm.CurrentApplicant);
+                await applicantManager.ChangeApplicant(editForm.CurrentApplicant, CancellationToken.None);
                 await OnUpdate();
             }
         }
@@ -144,7 +144,7 @@ namespace DataGridView.App.Forms
 
         private async Task LoadData()
         {
-            var items = await applicantManager.GetAllApplicants();
+            var items = await applicantManager.GetAllApplicants(CancellationToken.None);
             bindingSource.DataSource = items.ToList();
             dataGridView1.DataSource = bindingSource;
             await SetStatistic();
