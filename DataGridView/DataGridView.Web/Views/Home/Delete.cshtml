@@ -1,0 +1,54 @@
+﻿@using DataGridView.Entities.Models
+@model ApplicantModel
+
+@{
+    ViewData["Title"] = "Удалить абитуриента";
+}
+
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">Подтверждение удаления</h4>
+                </div>
+                <div class="card-body">
+                    <h5>Вы уверены, что хотите удалить абитуриента?</h5>
+                    <dl class="row">
+                        <dt class="col-sm-4">ФИО:</dt>
+                        <dd class="col-sm-8">@Model.FullName</dd>
+
+                        <dt class="col-sm-4">Пол:</dt>
+                        <dd class="col-sm-8">@(Model.Gender == Gender.Male ? "Мужской" : "Женский")</dd>
+
+                        <dt class="col-sm-4">Дата рождения:</dt>
+                        <dd class="col-sm-8">@Model.BirthDay.ToString("dd.MM.yyyy")</dd>
+
+                        <dt class="col-sm-4">Форма обучения:</dt>
+                        <dd class="col-sm-8">
+                            @{
+                                var form = Model.FormOfEducation;
+                                var formText = form switch
+                                {
+                                    FormOfEducation.FullTime => "Очная",
+                                    FormOfEducation.PartTime => "Очно-заочная",
+                                    FormOfEducation.Correspondence => "Заочная",
+                                    _ => "Неизвестно"
+                                };
+                            }
+                            @formText
+                        </dd>
+                    </dl>
+
+                    <form asp-action="Delete" method="post">
+                        <input asp-for="Id" type="hidden" />
+                        <div class="d-flex justify-content-end gap-2">
+                            <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
